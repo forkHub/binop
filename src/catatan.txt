@@ -1,0 +1,9 @@
+database:
+fungsi dek
+variable
+modul
+
+object:
+variable
+parameter
+stmt
