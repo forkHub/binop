@@ -33,13 +33,18 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 		`;
 
 		this.build();
+
 		this._elHtml.setAttribute('id', item.id + '');
 		this._item = item;
 		this.varCont = this.getEl('div.var-cont');
 		this.expCont = this.getEl('div.exp-cont');
+
 		this.debug();
 		this.init();
+		this.setupEvent();
+	}
 
+	private setupEvent(): void {
 		//tombol
 		this.getEl('button.menu').onclick = (e: MouseEvent) => {
 			e.stopPropagation();
@@ -49,11 +54,12 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 
 		this.expCont.onclick = (e: MouseEvent) => {
 			e.stopPropagation();
-			let value: string;
-			value = window.prompt('value: ', this._item.value);
-			if (value) {
-				this._item.value = value;
-				this.expCont.innerText = value;
+			let valueStr: string;
+
+			valueStr = window.prompt('value: ', VarIsi.getValue(this._item).value);
+			if (valueStr) {
+				VarIsi.getValue(this._item).value = valueStr;
+				this.expCont.innerText = valueStr;
 			}
 		}
 
@@ -67,8 +73,6 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 				dataObj.simpan();
 			}
 		}
-
-
 
 	}
 
@@ -107,19 +111,17 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 	}
 
 	private setupExp(): void {
-		this.expCont.innerText = this._item.value;
+		this.expCont.innerText = VarIsi.getValue(this._item).value;
 	}
 
 	private setupVar(): void {
 		console.log('setup var:');
 		console.log('this._item.varId: ' + this._item.varId);
 
-		if (this._item.varId > 0) {
-			this.varCont.innerText = Variable.nama(this._item.varId);
-		}
-		else {
-			this.varCont.innerText = '---';
-		}
+		let varEd: EditVariable = new EditVariable(this._item.varId, () => {
+			this._item.varId = varEd.varId;
+		});
+		varEd.attach(this.varCont);
 	}
 
 }

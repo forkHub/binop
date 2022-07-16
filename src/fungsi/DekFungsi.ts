@@ -1,6 +1,18 @@
 class DekFungsi {
     static readonly daftar: IDekFungsi[] = [];
 
+    static buatParam(nama: string, indukId: number, param: IParam[]): IDekFungsi {
+        let hasil: IDekFungsi;
+
+        hasil = this.buat(nama, indukId);
+
+        param.forEach((item: IParam) => {
+            hasil.paramAr.push(item);
+        })
+
+        return hasil;
+    }
+
     static buat(nama: string, indukId: number): IDekFungsi {
         let hasil: IDekFungsi;
 

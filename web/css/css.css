@@ -15,7 +15,10 @@ div.nama-item.dipilih {
 	background-color: gray;
 }
 
-div.hal-fungsi-dek 
-div.item-param {
+div.hal-fungsi-dek div.item-param {
 	padding: 8px;
+}
+
+* {
+	font-size: 12px;
 }

@@ -1,4 +1,4 @@
-///<reference path="./comp/BaseComponent.ts"/>
+///<reference path="../comp/BaseComponent.ts"/>
 
 class DekFungsiEditor extends ha.comp.BaseComponent {
 	private _item: IDekFungsi;
@@ -95,8 +95,8 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 					id: Id.id,
 					indukId: this._item.id,
 					nama: 'fungsi',
-					prevIdx: 0,
-					refFungsiIdx: 0,
+					// prevIdx: 0,
+					refId: 0,
 					stmtType: STMT_PANGGIL_FUNGSI,
 					type: TY_STMT,
 					ket: '',
@@ -110,10 +110,20 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 		})
 
 		this.pilihStmt.buatTombol({
-			label: 'nama = exp',
+			label: 'nama = value',
 			f: () => {
-				let obj: IVarIsi = VarIsi.buat(this._item.id);
-				let view: VarisiViewItem = new VarisiViewItem(obj);
+				let obj: IVarIsi;
+				let view: VarisiViewItem;
+				let valueObj: IValue;
+				let expObj: IExp;
+
+				obj = VarIsi.buatValue(this._item.id);
+				expObj = exp.get(obj.refId)
+				valueObj = value.buat(expObj.id);
+				expObj.refId = valueObj.id;
+
+				view = new VarisiViewItem(obj);
+
 				this._item.stmtAr.push(obj.id);
 				view.attach(this.daftarStmt);
 				dataObj.simpan();

@@ -9,9 +9,8 @@ interface IVar extends IData {
 }
 
 interface IExp extends IData {
-	value: string,
-	varId: number,
-	fungId: number,
+	refId: number,
+	typeExp: string;
 }
 
 interface IBinop extends IData {
@@ -27,7 +26,6 @@ interface IArg extends IData {
 	tipeArg: string //
 }
 
-//TODO: dihapus
 interface IValue extends IData {
 	tipeValue: "teks" | "angka" | "ar_angka" | "ar_teks", //ar pakai id
 	value: string

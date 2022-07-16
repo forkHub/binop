@@ -11,6 +11,7 @@ body {
 
 button {
 	padding: 8px;
+	cursor: pointer;
 }
 
 .back {
@@ -268,4 +269,12 @@ a.bersih {
 
 .width-12 {
 	width: 100%;
+}
+
+.user-select-none {
+	user-select: none;
+}
+
+.cursor-pointer {
+	cursor: pointer;
 }

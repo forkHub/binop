@@ -1,8 +1,5 @@
 class DataObj {
-	// readonly modulAr: IModul[] = [];
-	// readonly dekFungsiAr: IDekFungsi[] = [];
 	readonly paramAr: IParam[] = [];
-	// readonly stmtAr: IStmt[] = [];
 	readonly argAr: IArg[] = [];
 
 	private _halModul: HalModule;

@@ -1,4 +1,4 @@
-///<reference path="./comp/BaseComponent.ts"/>
+///<reference path="../comp/BaseComponent.ts"/>
 class PilihVariableItem extends ha.comp.BaseComponent {
 	private _finish: () => void;
 	public get finish(): () => void {
