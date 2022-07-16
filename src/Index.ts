@@ -16,5 +16,5 @@ function init(): void {
 }
 
 window.onload = () => {
-	testFungEd();
+	testVarIsiBinop();
 }

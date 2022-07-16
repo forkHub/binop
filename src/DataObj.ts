@@ -1,6 +1,7 @@
 class DataObj {
 	readonly paramAr: IParam[] = [];
 	readonly argAr: IArg[] = [];
+	readonly dataAr: IData[] = [];
 
 	private _halModul: HalModule;
 	public get halModul(): HalModule {
@@ -10,6 +11,18 @@ class DataObj {
 	private _halFungsi: DekFungsiEditor;
 	public get halFungsi(): DekFungsiEditor {
 		return this._halFungsi;
+	}
+
+	getById(id: number): IData {
+		let hasil: IData;
+
+		this.dataAr.forEach((item: IData) => {
+			if (item.id = id) {
+				hasil = item;
+			}
+		})
+
+		return hasil;
 	}
 
 	hapus(): void {

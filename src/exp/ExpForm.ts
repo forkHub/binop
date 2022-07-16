@@ -43,7 +43,7 @@ class ExpForm extends ha.comp.BaseComponent {
 								<br />
 							</div>
 							<div class="padding-4">
-								<input type="text" name="ref" class='ref padding' placeholder="0" readonly>
+								<input type="text" name="ref" class='ref padding user-select-none cursor-pointer' placeholder="0" readonly>
 								<button type='button' class="browse">browse</button>
 							</div>
 						</div>

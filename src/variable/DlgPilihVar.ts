@@ -11,7 +11,7 @@ class PilihVariableItem extends ha.comp.BaseComponent {
 	constructor(variable: IVar) {
 		super();
 		this._template = `
-			<div class='item-var padding-4'>
+			<div class='item-var padding-4 user-select-none cursor-pointer'>
 				<div class='border padding'>
 					<span class='nama disp-inline-block'></span>
 				</div>
@@ -39,7 +39,7 @@ class PilihVariableView extends ha.comp.BaseComponent {
 	constructor() {
 		super();
 		this._template = `
-			<div class='pilih variable padding pos-abs top-0 left-0 back-color-white'>
+			<div class='pilih variable padding pos-abs top-0 left-0 back-color-white user-select-none cursor-pointer'>
 				<div class="padding border">
 					<div class="padding border">
 						<div class='judul'>Pilih Variable</div>

@@ -7,7 +7,7 @@ class VarisiBinopViewItem extends ha.comp.BaseComponent {
 	constructor(item: IVarIsi) {
 		super();
 		this._template = `
-			<div class='var-isi padding-4'>
+			<div class='var-isi padding-4 user-select-none cursor-pointer'>
 				<div class='border padding-4 wbreak-keep-all wspace-nowrap'>
 
 					<div class='disp-inline-block'>
@@ -15,11 +15,11 @@ class VarisiBinopViewItem extends ha.comp.BaseComponent {
 					</div>
 
 					<div class='disp-inline-block wspace-nowrap'>
-						<div class='var-cont disp-inline-block border padding'>
+						<div class='var-cont disp-inline-block'>
 						</div>
 						<div class='sama-dengan disp-inline-block padding border'>=
 						</div>
-						<div class='exp-cont disp-inline-block border padding'>
+						<div class='exp-cont disp-inline-block'>
 						</div>
 					</div>
 

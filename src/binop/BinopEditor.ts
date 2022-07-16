@@ -6,8 +6,8 @@ class BinopEditorFragment extends ha.comp.BaseComponent {
 	constructor(binop: IBinop) {
 		super();
 		this._template = `
-			<div class='binop padding-4'>
-				<div class='padding border'>
+			<div class=''>
+				<div class=''>
 					<div class='wspace-nowrap'>
 
 						<div class='exp1-cont disp-inline-block'>
