@@ -1,3 +1,5 @@
+///<reference path="../comp/BaseComponent.ts"/>
+
 class ParamView extends ha.comp.BaseComponent {
     private menu: ha.comp.MenuPopup;
     private _item: IParam;

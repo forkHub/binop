@@ -1,3 +1,5 @@
+
+///<reference path="../comp/BaseComponent.ts"/>
 namespace ha.comp {
 	export class MenuPopup {
 		readonly view: View = new View();

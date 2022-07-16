@@ -1,4 +1,4 @@
-///<reference path="./comp/BaseComponent.ts"/>
+///<reference path="../comp/BaseComponent.ts"/>
 
 /**
  * Form untuk edit exp property
@@ -6,8 +6,10 @@
 class ExpForm extends ha.comp.BaseComponent {
 	private varId: number = 0;
 	private exp: IExp;
+	private value: IValue;
+	private selesai: () => void;
 
-	constructor() {
+	constructor(exp: IExp, selesai: () => void) {
 		super();
 
 		this._template = `
@@ -22,7 +24,7 @@ class ExpForm extends ha.comp.BaseComponent {
 
 							<div class='padding-4'>
 								<label>
-									<input type="radio" name="tipe_arg" class="" value="${EXP_VALUE}" checked> literal
+									<input type="radio" name="tipe_arg" class="radio-value" value="${EXP_VALUE}" checked"> literal
 								</label>
 								<br />
 							</div>
@@ -36,12 +38,12 @@ class ExpForm extends ha.comp.BaseComponent {
 						<div class='var-cont'>
 							<div class='padding-4'>
 								<label>
-									<input type="radio" name="tipe_arg" class="" value="${EXP_REF_VAR}"> ref var
+									<input type="radio" name="tipe_arg" class="radio-var" value="${EXP_REF_VAR}"> ref var
 								</label>
 								<br />
 							</div>
 							<div class="padding-4">
-								<input type="text" name="ref" class='ref adding' placeholder="0">
+								<input type="text" name="ref" class='ref padding' placeholder="0" readonly>
 								<button type='button' class="browse">browse</button>
 							</div>
 						</div>
@@ -59,28 +61,71 @@ class ExpForm extends ha.comp.BaseComponent {
 		`;
 
 		this.build();
+		this.exp = exp;
+		this.value = value.buat(0);
+		this.selesai = selesai;
+		this.setEvent();
+		this.setDisplay();
+	}
 
+	setDisplay(): void {
+		let el: HTMLInputElement;
+
+		if (this.exp.typeExp == EXP_VALUE) {
+			(this.getEl('input.radio-value') as HTMLInputElement).checked = true;
+			this.literalHtml.value = value.get(this.exp.refId).value;
+
+			el = this.getEl('input.radio-value') as HTMLInputElement;
+			el.checked = true
+		}
+		else if (this.exp.typeExp == EXP_REF_VAR) {
+			let varObj: IVar;
+
+			el = this.getEl('input.radio-var') as HTMLInputElement;
+			el.checked = true
+
+			varObj = Variable.getVar(this.exp.refId);
+			this.refHtml.value = varObj.nama;
+		}
+		else {
+			throw Error('tipe exp undefined: ' + this.exp.typeExp);
+		}
+
+		console.group('set display:');
+		console.log(this.exp);
+		console.log(el);
+		console.groupEnd();
+	}
+
+	setEvent(): void {
 		this.form.onsubmit = (e: Event) => {
 			e.preventDefault();
 			e.stopPropagation();
 			try {
 				let arg: string = this.tipeInputHtml.value;
 
+				console.group('form submit');
+				console.log(arg);
+
 				if (arg == EXP_VALUE) {
-					this.exp.value = this.literalHtml.value;
-					this.exp.varId = null;
+					this.value.value = this.literalHtml.value;
+					this.exp.refId = this.value.id;
+					this.exp.typeExp = EXP_VALUE;
 				}
 				else if (arg == EXP_REF_VAR) {
-					this.exp.value = null;
-					this.exp.varId = this.varId;
-					//TODO: var id?
-
+					this.exp.refId = this.varId;
+					value.hapus(this.value.id);
+					this.exp.typeExp = EXP_REF_VAR;
 				}
 				else {
 					throw Error('')
 				}
 
+				console.log(this.exp);
+				console.groupEnd();
+
 				this.detach();
+				this.selesai();
 			}
 			catch (e) {
 				console.error(e);
@@ -96,7 +141,7 @@ class ExpForm extends ha.comp.BaseComponent {
 			console.log('browse click');
 			dlgPilihVariable.finish = () => {
 				this.refHtml.value = Variable.nama(dlgPilihVariable.varDipilih);
-				// this.exp.varId = dlgPilihVariable.varDipilih;
+				this.varId = dlgPilihVariable.varDipilih;
 
 				console.log('pilih var finish: ' + dlgPilihVariable.varDipilih);
 				console.log(this.literalHtml);
@@ -111,15 +156,6 @@ class ExpForm extends ha.comp.BaseComponent {
 			e.stopPropagation();
 			this.detach();
 		};
-
-		binopEd.attach(this.getEl('div.binop-fragment-cont'));
-	}
-
-	//TODO: terima dihapus
-	tampil(p: HTMLElement, exp: IExp): void {
-		this.exp = exp;
-
-		this.attach(p);
 	}
 
 	private get form(): HTMLFormElement {
@@ -127,7 +163,7 @@ class ExpForm extends ha.comp.BaseComponent {
 	}
 
 	private get tipeInputHtml(): HTMLInputElement {
-		return this.getEl('input[name=tipe_arg]') as HTMLInputElement;
+		return this.getEl('input[name=tipe_arg]:checked') as HTMLInputElement;
 	}
 
 	private get literalHtml(): HTMLInputElement {

@@ -1,10 +1,10 @@
 interface IStmt extends IData {
 	stmtType: string;
-	prevIdx: number;
+	// prevIdx: number;
 }
 
 interface IPanggilFungsi extends IStmt {
-	refFungsiIdx: number;
+	refId: number;
 	param: IExp[]
 }
 
@@ -18,23 +18,7 @@ interface IParam extends IData {
 
 }
 
-
 interface IVarIsi extends IStmt {
 	varId: number,
-	value: string,
-	exp: IExp
-}
-
-//TODO:
-interface IVarIsiBinop extends IStmt {
-	refVarId: number,
-	refOpr1Id: number,
-	refOpr2Id: number,
-	refOpId: number
-}
-
-//TODO:
-interface IVarIsiPanggilFungsi extends IStmt {
-	refVarId: number,
-	refFungId: number,
+	refId: number,
 }

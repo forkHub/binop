@@ -1,9 +1,8 @@
-class VarIsiFungView extends ha.comp.BaseComponent {
+class VarisiBinopViewItem extends ha.comp.BaseComponent {
 	private _item: IVarIsi;
 
 	private menu: ha.comp.MenuPopup;
 	private varCont: HTMLElement;
-	private expCont: HTMLElement;
 
 	constructor(item: IVarIsi) {
 		super();
@@ -33,29 +32,22 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 		`;
 
 		this.build();
+
 		this._elHtml.setAttribute('id', item.id + '');
 		this._item = item;
 		this.varCont = this.getEl('div.var-cont');
-		this.expCont = this.getEl('div.exp-cont');
+
 		this.debug();
 		this.init();
+		this.setupEvent();
+	}
 
+	private setupEvent(): void {
 		//tombol
 		this.getEl('button.menu').onclick = (e: MouseEvent) => {
 			e.stopPropagation();
 
 			this.menu.view.attach(document.body);
-		}
-
-		this.expCont.onclick = (e: MouseEvent) => {
-			e.stopPropagation();
-			//TODO:
-			// let value: string;
-			// value = window.prompt('value: ', this._item.value);
-			// if (value) {
-			// 	this._item.value = value;
-			// 	this.expCont.innerText = value;
-			// }
 		}
 
 		this.varCont.onclick = (e: MouseEvent) => {
@@ -68,8 +60,6 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 				dataObj.simpan();
 			}
 		}
-
-
 
 	}
 
@@ -103,25 +93,31 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 
 	private init(): void {
 		this.setupVar();
-		this.setupExp();
 		this.setupMenu();
+		this.setupBinop();
 	}
 
-	private setupExp(): void {
-		//TODO:
-		// this.expCont.innerText = this._item.value;
+	private setupBinop(): void {
+		let binopEd: BinopEditorFragment;
+		let binopObj: IBinop;
+
+		binopObj = Binop.get(this._item.refId);
+		binopEd = new BinopEditorFragment(binopObj);
+		binopEd.attach(this.expCont);
 	}
 
 	private setupVar(): void {
 		console.log('setup var:');
 		console.log('this._item.varId: ' + this._item.varId);
 
-		if (this._item.varId > 0) {
-			this.varCont.innerText = Variable.nama(this._item.varId);
-		}
-		else {
-			this.varCont.innerText = '---';
-		}
+		let varEd: EditVariable = new EditVariable(this._item.varId, () => {
+			this._item.varId = varEd.varId;
+		});
+		varEd.attach(this.varCont);
+	}
+
+	private get expCont(): HTMLElement {
+		return this.getEl('div.exp-cont');
 	}
 
 }

@@ -15,21 +15,6 @@ function init(): void {
 	dataObj.halModul.tampil(modul);
 }
 
-function testVariIsi(): void {
-	let varisiObj: IVarIsi = VarIsi.buat(0);
-	let varIsiView: VarisiViewItem = new VarisiViewItem(varisiObj);
-	varIsiView.attach(document.body);
-}
-
-function testExpForm(): void {
-	window.localStorage.clear();
-	let expForm: ExpForm = new ExpForm();
-	let expObj: IExp;
-
-	expObj = exp.buat(0, true);
-	expForm.tampil(document.body, expObj);
-}
-
 window.onload = () => {
-	testVariIsi();
+	testFungEd();
 }

@@ -31,7 +31,8 @@ class Variable {
             }
         }
 
-        throw Error('id: ' + id);
+        console.warn('id tidak ketemu: ' + id);
+        return null;
     }
 
     static buatVarObj(nama: string, indukId: number): IVar {
@@ -55,5 +56,7 @@ class Variable {
     static terj(obj: IVar): string {
         return "let " + obj.nama + "= ''";
     }
+
+
 
 }

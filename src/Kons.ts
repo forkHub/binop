@@ -6,6 +6,7 @@ const TY_STMT: string = 'stmt';
 const TY_PARAM: string = 'param';
 const TY_VALUE: string = 'value';
 const TY_EXP: string = 'exp';
+const TY_PANGGIL_FUNGSI: string = 'exp';
 
 const STMT_VAR_ISI: string = 'var isi';
 const STMT_VAR_ISI_BINOP: string = 'var isi binop';
