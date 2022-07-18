@@ -52,7 +52,7 @@ class Modul {
 
         //var
         modul.varAr.forEach((id: number) => {
-            let item: IVar = Variable.getVar(id);
+            let item: IVar = Variable.get(id);
             hasil += Variable.terj(item);
             hasil += "\n";
         });

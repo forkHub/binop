@@ -1,8 +1,22 @@
 class PanggilFungsi {
-    readonly daftar: IPanggilFungsi[] = [];
 
     nama(f: IPanggilFungsi): string {
         return DekFungsi.get(f.refId).nama;
+    }
+
+    paramNama(f: IPanggilFungsi, idx: number): string {
+        let hasil: string;
+
+        f.param.forEach((itemId: number, paramIdx: number) => {
+            if (idx == paramIdx) {
+                let expObj: IExp;
+
+                expObj = exp.get(itemId);
+                hasil = exp.getNama(expObj);
+            }
+        })
+
+        return hasil;
     }
 
     ganti(f: IPanggilFungsi, refId: number): void {
@@ -11,17 +25,67 @@ class PanggilFungsi {
     }
 
     private buildRef(f: IPanggilFungsi): void {
-        let fg: IDekFungsi = DekFungsi.get(f.refId);
+        let fg: IDekFungsi
+
+        console.group('build ref:');
+
+        fg = DekFungsi.get(f.refId);
 
         f.param = [];
         fg.paramAr.forEach((item: IParam) => {
+            let valueObj: IValue;
+            let expObj: IExp;
+
             item;
-            f.param.push(exp.buat(f.id, true));
-        })
+
+            valueObj = value.buat(0);
+            expObj = exp.buatValue(0, valueObj.id);
+            f.param.push(expObj.id);
+
+            //validasi
+            exp.get(expObj.id);
+        });
+
+        console.log('param:');
+        console.log(f.param);
+
+        console.log('id: ' + f.id);
+
+        console.groupEnd();
+    }
+
+    get(id: number): IPanggilFungsi {
+        let hasil: IPanggilFungsi;
+
+        hasil = dataObj.getById(id) as IPanggilFungsi;
+
+        // dataObj.dataAr.forEach((item: IData) => {
+        //     if (item.id == id) {
+        //         hasil = item as IPanggilFungsi;
+        //     }
+        // })
+
+        if (!hasil) {
+            console.error('panggi fungsi tidak ketemu, id: ' + id);
+        }
+
+        if (hasil.type != TY_STMT) {
+            console.log(hasil);
+            throw Error('fungsi invalid, ty: ' + hasil.type);
+        }
+
+        if (hasil.stmtType != STMT_PANGGIL_FUNGSI) {
+            console.log(hasil);
+            throw Error('fungsi stmt type invalid,');
+        }
+
+        return hasil;
     }
 
     buat(indukId: number, refId: number): IPanggilFungsi {
         let hasil: IPanggilFungsi;
+
+        console.group('buat panggil fungsi:');
 
         hasil = {
             id: Id.id,
@@ -31,11 +95,46 @@ class PanggilFungsi {
             param: [],
             refId: refId,
             stmtType: STMT_PANGGIL_FUNGSI,
-            type: TY_PANGGIL_FUNGSI,
+            type: TY_STMT,
         }
 
         //build reference
         this.buildRef(hasil);
+
+        dataObj.debug();
+
+        dataObj.push(hasil);
+
+        dataObj.debug();
+
+        //validasi
+        panggilFungsi.get(hasil.id);
+
+        console.group('validasi panggil fungsi');
+        console.log('panggil fungsi:');
+        console.log(hasil);
+        console.log(hasil.id);
+
+        console.log('param:')
+        console.log(hasil.param);
+
+        // console.log('data ar:');
+        // console.log(dataObj.dataAr);
+
+        hasil.param.forEach((item: number) => {
+
+            console.group('validasi param')
+            console.log('item: ' + item);
+
+            exp.getNamaById(item);
+
+            console.groupEnd();
+
+        })
+
+        console.groupEnd();
+
+        console.groupEnd();
 
         return hasil;
     }

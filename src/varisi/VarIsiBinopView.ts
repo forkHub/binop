@@ -68,7 +68,7 @@ class VarisiBinopViewItem extends ha.comp.BaseComponent {
 
 		if (this._item.varId > 0) {
 			this.getEl('div.debug').innerText += "-----";
-			this.getEl('div.debug').innerText += JSON.stringify(Variable.getVar(this._item.varId));
+			this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varId));
 		}
 
 	}

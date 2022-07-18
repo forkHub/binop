@@ -16,11 +16,11 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 					</div>
 
 					<div class='disp-inline-block wspace-nowrap'>
-						<div class='var-cont disp-inline-block border padding'>
+						<div class='var-cont disp-inline-block border'>
 						</div>
 						<div class='sama-dengan disp-inline-block padding border'>=
 						</div>
-						<div class='exp-cont disp-inline-block border padding'>
+						<div class='exp-cont disp-inline-block'>
 						</div>
 					</div>
 
@@ -37,7 +37,6 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 		this._item = item;
 		this.varCont = this.getEl('div.var-cont');
 		this.expCont = this.getEl('div.exp-cont');
-		this.debug();
 		this.init();
 
 		//tombol
@@ -45,40 +44,6 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 			e.stopPropagation();
 
 			this.menu.view.attach(document.body);
-		}
-
-		this.expCont.onclick = (e: MouseEvent) => {
-			e.stopPropagation();
-			//TODO:
-			// let value: string;
-			// value = window.prompt('value: ', this._item.value);
-			// if (value) {
-			// 	this._item.value = value;
-			// 	this.expCont.innerText = value;
-			// }
-		}
-
-		this.varCont.onclick = (e: MouseEvent) => {
-			e.stopPropagation();
-			dlgPilihVariable.view.attach(document.body);
-			dlgPilihVariable.tampil();
-			dlgPilihVariable.finish = () => {
-				this.varCont.innerText = Variable.nama(dlgPilihVariable.varDipilih);
-				this._item.varId = dlgPilihVariable.varDipilih;
-				dataObj.simpan();
-			}
-		}
-
-
-
-	}
-
-	private debug(): void {
-		this.getEl('div.debug').innerText = JSON.stringify(this._item);
-
-		if (this._item.varId > 0) {
-			this.getEl('div.debug').innerText += "-----";
-			this.getEl('div.debug').innerText += JSON.stringify(Variable.getVar(this._item.varId));
 		}
 
 	}
@@ -108,20 +73,23 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 	}
 
 	private setupExp(): void {
-		//TODO:
-		// this.expCont.innerText = this._item.value;
+		let fungEd: PanggilFungsiEd;
+		let panggilFungsiObj: IPanggilFungsi;
+
+		panggilFungsiObj = VarIsi.getFung(this._item);
+
+		fungEd = new PanggilFungsiEd(panggilFungsiObj);
+		fungEd.attach(this.expCont);
 	}
 
 	private setupVar(): void {
 		console.log('setup var:');
 		console.log('this._item.varId: ' + this._item.varId);
 
-		if (this._item.varId > 0) {
-			this.varCont.innerText = Variable.nama(this._item.varId);
-		}
-		else {
-			this.varCont.innerText = '---';
-		}
+		let varEd: EditVariable = new EditVariable(this._item.varId, () => {
+			this._item.varId = varEd.varId;
+		});
+		varEd.attach(this.varCont);
 	}
 
 }

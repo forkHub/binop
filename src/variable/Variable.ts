@@ -1,15 +1,12 @@
 class Variable {
     static readonly daftar: IVar[] = [];
 
-    //TODO: ganti
     static nama(id: number): string {
-        for (let i: number = 0; i < this.daftar.length; i++) {
-            if (this.daftar[i].id == id) {
-                return this.daftar[i].nama;
-            }
-        }
+        let obj: IVar;
 
-        throw Error('id: ' + id);
+        obj = this.get(id);
+
+        return obj.nama;
     }
 
     static getByIndukId(id: number): IVar[] {
@@ -24,15 +21,15 @@ class Variable {
         return hasil;
     }
 
-    static getVar(id: number): IVar {
+    static get(id: number): IVar {
+
         for (let i: number = 0; i < this.daftar.length; i++) {
             if (this.daftar[i].id == id) {
                 return this.daftar[i];
             }
         }
 
-        console.warn('id tidak ketemu: ' + id);
-        return null;
+        throw Error('id tidak ketemu: ' + id);
     }
 
     static buatVarObj(nama: string, indukId: number): IVar {
@@ -49,6 +46,10 @@ class Variable {
 
         this.daftar.push(hasil);
         dataObj.simpan();
+
+        //validasi
+        this.get(hasil.id);
+        this.nama(hasil.id);
 
         return hasil;
     }

@@ -5,7 +5,7 @@ interface IStmt extends IData {
 
 interface IPanggilFungsi extends IStmt {
 	refId: number;
-	param: IExp[]
+	param: number[]
 }
 
 interface IDekFungsi extends IData {

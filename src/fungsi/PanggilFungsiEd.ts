@@ -45,10 +45,12 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
         //param
         this.argCont.innerHTML = '';
 
-        this.panggilFungsiObj.param.forEach((item: IExp, idx: number) => {
+        this.panggilFungsiObj.param.forEach((itemId: number, idx: number) => {
             let expEd: ExpEd;
+            let expObj: IExp;
 
-            expEd = new ExpEd(item);
+            expObj = exp.get(itemId)
+            expEd = new ExpEd(expObj);
             expEd.attach(this.argCont);
 
             if (idx < this.panggilFungsiObj.param.length - 1) {

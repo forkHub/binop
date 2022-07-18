@@ -21,11 +21,21 @@ class ExpEd extends ha.comp.BaseComponent {
     }
 
     display(): void {
-        console.log('display');
+        console.group('display');
         console.log(this.expObj);
 
         if (this.expObj.typeExp == EXP_VALUE) {
-            this._elHtml.innerText = exp.getValue(this.expObj).value;
+            let valueObj: IValue;
+            let valueLit: string;
+
+            valueObj = exp.getValue(this.expObj);
+            valueLit = valueObj.value;
+
+            this._elHtml.innerText = valueLit;
+
+            console.log('value:');
+            console.log(valueObj);
+
         }
         else if (this.expObj.typeExp == EXP_REF_VAR) {
             this._elHtml.innerText = exp.getVar(this.expObj).nama;
@@ -33,6 +43,8 @@ class ExpEd extends ha.comp.BaseComponent {
         else {
             throw Error('exp type tidak di support: ' + this.expObj.typeExp);
         }
+
+        console.groupEnd();
 
     }
 }

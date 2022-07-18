@@ -84,7 +84,7 @@ class ExpForm extends ha.comp.BaseComponent {
 			el = this.getEl('input.radio-var') as HTMLInputElement;
 			el.checked = true
 
-			varObj = Variable.getVar(this.exp.refId);
+			varObj = Variable.get(this.exp.refId);
 			this.refHtml.value = varObj.nama;
 		}
 		else {

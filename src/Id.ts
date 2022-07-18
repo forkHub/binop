@@ -3,10 +3,14 @@ class Id {
 
     static get id(): number {
         if (this._base <= 0) {
-            this._base = ha.comp.Util.id();
+            this._base = 10;
+            console.log('reset');
         }
 
-        this._base++;
+        this._base = this._base + 2;
+
+        console.log('get id: ' + this._base);
+
         return this._base;
     }
 }

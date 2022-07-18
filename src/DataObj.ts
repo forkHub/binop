@@ -1,7 +1,7 @@
 class DataObj {
 	readonly paramAr: IParam[] = [];
 	readonly argAr: IArg[] = [];
-	readonly dataAr: IData[] = [];
+	private readonly dataAr: IData[] = [];
 
 	private _halModul: HalModule;
 	public get halModul(): HalModule {
@@ -13,11 +13,40 @@ class DataObj {
 		return this._halFungsi;
 	}
 
+	push(item: IData): void {
+		console.group('push');
+		console.log('push, id: ' + item.id);
+
+		this.debug();
+
+		if (this.getById(item.id)) {
+			console.log(this.dataAr);
+			console.log(JSON.stringify(this.dataAr));
+			throw Error('duplikat');
+		}
+
+		this.debug();
+
+		this.dataAr.push(item);
+		console.log(this.dataAr);
+		console.log(JSON.stringify(this.dataAr));
+		this.validasi()
+
+		console.groupEnd();
+	}
+
+	debug(): void {
+		console.group('debug:');
+		console.log(this.dataAr);
+		console.log(JSON.stringify(this.dataAr));
+		console.groupEnd();
+	}
+
 	getById(id: number): IData {
 		let hasil: IData;
 
 		this.dataAr.forEach((item: IData) => {
-			if (item.id = id) {
+			if (item.id === id) {
 				hasil = item;
 			}
 		})
@@ -144,6 +173,16 @@ class DataObj {
 		catch (e) {
 			console.error(e);
 			// ha.comp.dialog.tampil(e);
+		}
+	}
+
+	validasi(): void {
+		for (let i: number = 0; i < this.dataAr.length; i++) {
+			for (let j: number = i + 1; j < this.dataAr.length; j++) {
+				if (this.dataAr[i].id == this.dataAr[j].id) {
+					throw Error('i: ' + i + '/j: ' + j);
+				}
+			}
 		}
 	}
 }

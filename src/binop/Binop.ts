@@ -1,9 +1,9 @@
 class Binop {
 	private static readonly daftar: IBinop[] = [];
 
-	private static baru1(id: number, indukId: number): IBinop {
+	private static buatDasar(indukId: number): IBinop {
 		let obj: IBinop = {
-			id: id,
+			id: Id.id,
 			indukId: indukId,
 			ket: '',
 			nama: '',
@@ -17,11 +17,14 @@ class Binop {
 		return obj;
 	}
 
-	static baru(id: number, indukId: number): IBinop {
+	static baru(indukId: number): IBinop {
 		let hasil: IBinop;
+		let valueObj: IValue;
 
-		hasil = this.baru1(id, indukId);
-		this.setExp(hasil, exp.buat(hasil.id, true).id, exp.buat(hasil.id, true).id);
+		valueObj = value.buat(0);
+
+		hasil = this.buatDasar(indukId);
+		this.setExp(hasil, exp.buatValue(hasil.id, valueObj.id).id, exp.buatValue(hasil.id, valueObj.id).id);
 
 		return hasil;
 	}
@@ -46,6 +49,8 @@ class Binop {
 
 		return hasil;
 	}
+
+	//validasi
 
 	//todo hapus, read, update
 }

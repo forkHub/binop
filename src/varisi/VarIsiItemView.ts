@@ -81,7 +81,7 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 
 		if (this._item.varId > 0) {
 			this.getEl('div.debug').innerText += "-----";
-			this.getEl('div.debug').innerText += JSON.stringify(Variable.getVar(this._item.varId));
+			this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varId));
 		}
 
 	}
@@ -111,7 +111,7 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 	}
 
 	private setupExp(): void {
-		this.expCont.innerText = VarIsi.getValue(this._item).value;
+
 	}
 
 	private setupVar(): void {

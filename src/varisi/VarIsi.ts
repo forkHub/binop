@@ -10,9 +10,29 @@ class VarIsi {
 		return hasil;
 	}
 
+	static getFung(obj: IVarIsi): IPanggilFungsi {
+		let expObj: IExp;
+		let hasil: IPanggilFungsi;
+
+		expObj = this.getExp(obj);
+		hasil = exp.getFung(expObj);
+
+		if (!hasil) {
+			console.error('fung tidak ketemu, var isi id: ' + obj.id);
+		}
+
+		return hasil;
+	}
+
 	static getExp(obj: IVarIsi): IExp {
 		let hasil: IExp;
+
 		hasil = exp.get(obj.refId);
+
+		if (!hasil) {
+			console.error('exp tidak ketemu:, var isi id: ' + obj.id);
+		}
+
 		return hasil;
 	}
 
@@ -39,15 +59,44 @@ class VarIsi {
 		})
 	}
 
-	static buatValue(indukId: number): IVarIsi {
+	static buatFungsi(indukId: number, refId: number): IVarIsi {
 		let hasil: IVarIsi;
-		let valueObj: IValue;
+		let expObj: IExp;
+		let panggilFung: IPanggilFungsi;
+
+		hasil = this.buatDasar(indukId);
+		expObj = this.getExp(hasil);
+		panggilFung = panggilFungsi.buat(hasil.id, refId);
+		expObj.refId = panggilFung.id;
+		expObj.typeExp = EXP_REF_FUNGSI;
+
+		console.group('buat vari isi function');
+		console.log(hasil);
+		console.log(expObj);
+		console.log(panggilFung);
+		console.log(DekFungsi.get(panggilFung.refId));
+		console.groupEnd()
+
+		this.simpanObj(hasil);
+
+		return hasil;
+	}
+
+	static buatValue(indukId: number, expValueId: number): IVarIsi {
+		let hasil: IVarIsi;
 		let expObj: IExp;
 
-		hasil = this.buat(indukId);
-		expObj = this.getExp(hasil);
-		valueObj = value.buat(expObj.id);
-		expObj.refId = valueObj.id;
+		//validate
+		expObj = exp.get(expValueId);
+		exp.getValue(expObj);
+
+		hasil = this.buatDasar(indukId);
+		hasil.refId = expValueId;
+
+		this.simpanObj(hasil);
+
+		//validate
+		this.validasi(hasil);
 
 		return hasil;
 	}
@@ -55,26 +104,26 @@ class VarIsi {
 	static buatBinop(indukId: number): IVarIsi {
 		let hasil: IVarIsi;
 		let binopObj: IBinop;
-		let id: number;
 
-		hasil = this.buat(indukId);
-		id = Id.id;
-		binopObj = Binop.baru(id, hasil.id)
+		hasil = this.buatDasar(indukId);
+		binopObj = Binop.baru(hasil.id)
 		hasil.refId = binopObj.id;
+
+		this.simpanObj(hasil);
 
 		return hasil;
 	}
 
-	private static buat(indukId: number): IVarIsi {
+	private static buatDasar(indukId: number): IVarIsi {
 		let obj: IVarIsi;
-		let expObj: IExp;
+		// let expObj: IExp;
+		// let valueObj: IValue;
 
 		//buat obj
 		obj = {
 			id: Id.id,
 			indukId: indukId,
 			nama: '',
-			// prevIdx: 0,
 			varId: -1,
 			stmtType: STMT_VAR_ISI,
 			type: TY_STMT,
@@ -82,15 +131,18 @@ class VarIsi {
 			refId: 0,
 		}
 
-		expObj = exp.buat(obj.id, true);
-		obj.refId = expObj.id;
+		// valueObj = value.buat(0);
+		// expObj = exp.buatValue(obj.id, valueObj.id);
+		// obj.refId = expObj.id;
 
+		return obj;
+	}
+
+	private static simpanObj(obj: IVarIsi): void {
 		Stmt.daftar.push(obj);
 		dataObj.simpan();
 
 		this.validasi(obj);
-
-		return obj;
 	}
 
 	static terj(obj: IVarIsi): string {
@@ -107,9 +159,12 @@ class VarIsi {
 		}
 
 		if (obj.varId > 0) {
-			Variable.getVar(obj.varId);
+			Variable.get(obj.varId);
 		}
 
+
+		//self
+		Stmt.get(obj.id); //TODO: check
 	}
 
 }

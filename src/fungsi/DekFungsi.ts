@@ -30,13 +30,20 @@ class DekFungsi {
         this.daftar.push(hasil);
         dataObj.simpan();
 
+        this.validasi(hasil);
+
         return hasil;
     }
 
     static get(id: number): IDekFungsi {
         for (let i: number = 0; i < this.daftar.length; i++) {
             let item: IDekFungsi = this.daftar[i];
-            if (item.id == id) return item;
+            if (item.id == id) {
+                if (item.type != TY_DEK_FUNGSI) {
+                    throw Error('invalid dek fungsi');
+                }
+                return item;
+            }
         }
 
         throw Error('');
@@ -57,7 +64,7 @@ class DekFungsi {
 
         //var
         item.varAr.forEach((id: number) => {
-            hasil += Variable.terj(Variable.getVar(id)) + "\n";
+            hasil += Variable.terj(Variable.get(id)) + "\n";
         })
 
         //stmt
@@ -93,6 +100,7 @@ class DekFungsi {
             throw new Error('array tidak sama');
         }
 
+        this.get(item.id);
     }
 
 }

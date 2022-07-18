@@ -34,7 +34,7 @@ class HalModule extends ha.comp.BaseComponent {
         this._modul.varAr.forEach((id: number) => {
             let item: IVar;
 
-            item = Variable.getVar(id);
+            item = Variable.get(id);
             this.renderVar(item);
 
         });

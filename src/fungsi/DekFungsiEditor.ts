@@ -45,7 +45,7 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 		this._item = item;
 
 		item.varAr.forEach((id: number) => {
-			let varObj: IVar = Variable.getVar(id);
+			let varObj: IVar = Variable.get(id);
 
 			if (varObj.indukId == this._item.id) {
 				let varView: VariableItem;
@@ -117,10 +117,13 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 				let valueObj: IValue;
 				let expObj: IExp;
 
-				obj = VarIsi.buatValue(this._item.id);
-				expObj = exp.get(obj.refId)
-				valueObj = value.buat(expObj.id);
-				expObj.refId = valueObj.id;
+				valueObj = value.buat(0);
+				expObj = exp.buatValue(0, valueObj.id);
+				obj = VarIsi.buatValue(this._item.id, expObj.id);
+
+				// expObj = exp.get(obj.refId)
+				// valueObj = value.buat(expObj.id);
+				// expObj.refId = valueObj.id;
 
 				view = new VarisiViewItem(obj);
 

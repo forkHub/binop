@@ -1,5 +1,4 @@
 class Value {
-	// private readonly daftar: IValue[] = [];
 
 	hapus(id: number): void {
 		id;
@@ -8,6 +7,8 @@ class Value {
 
 	buat(indukId: number): IValue {
 		let hasil: IValue;  //TODO:
+
+		console.log('buat value:');
 
 		hasil = {
 			id: Id.id,
@@ -19,7 +20,10 @@ class Value {
 			value: '0'
 		}
 
-		dataObj.dataAr.push(hasil);
+		dataObj.push(hasil);
+		dataObj.simpan();
+
+		this.validasi(hasil);
 
 		return hasil;
 	}
@@ -27,7 +31,15 @@ class Value {
 	get(id: number): IValue {
 		let hasil: IValue;
 
+		console.log('get value by id: ' + id);
+
 		hasil = dataObj.getById(id) as IValue;
+
+		if (hasil.type != TY_VALUE) {
+			console.log('get by id, value error: ')
+			console.log(hasil);
+			throw Error('value invalid, id: ' + id);
+		}
 
 		if (!hasil) {
 			throw Error('value tidak ketemu: ' + id);
@@ -35,5 +47,10 @@ class Value {
 
 		return hasil;
 	}
+
+	validasi(obj: IValue): void {
+		this.get(obj.id);
+	}
+
 }
 const value: Value = new Value();

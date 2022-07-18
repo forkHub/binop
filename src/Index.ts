@@ -16,5 +16,8 @@ function init(): void {
 }
 
 window.onload = () => {
-	testVarIsiBinop();
+	// testVariIsi();
+	// testVarIsiBinop();
+	testPanggilFungsi();
+	// testVarIsiFungsi();
 }

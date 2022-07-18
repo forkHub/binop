@@ -34,7 +34,7 @@ class EditVariable extends ha.comp.BaseComponent {
         console.log(this._varId);
 
         if (this._varId > 0) {
-            this._elHtml.innerText = Variable.getVar(this._varId).nama;
+            this._elHtml.innerText = Variable.get(this._varId).nama;
         }
         else {
             this._elHtml.innerText = '---';

@@ -1,7 +1,7 @@
 class Exp {
 	private readonly daftar: IExp[] = [];
 
-	buat(indukId: number, simpan: boolean): IExp {
+	private buatDasar(indukId: number): IExp {
 		let hasil: IExp;
 
 		hasil = {
@@ -14,15 +14,49 @@ class Exp {
 			typeExp: EXP_VALUE
 		}
 
-		let valueObj: IValue;
-		valueObj = value.buat(hasil.id);
-		hasil.refId = valueObj.id;
+		return hasil;
+	}
 
-		if (simpan) {
-			this.daftar.push(hasil);
-		}
+	buatValue(indukId: number, refId: number): IExp {
+		let hasil: IExp;
+
+		value.get(refId);
+
+		hasil = this.buatDasar(indukId);
+		hasil.refId = refId;
+		hasil.typeExp = EXP_VALUE;
+
+		this.daftar.push(hasil);
+
+		this.validate(hasil);
 
 		return hasil;
+	}
+
+	buatFungsi(indukId: number, refId: number): IExp {
+		let hasil: IExp;
+
+		panggilFungsi.get(refId);
+		hasil = this.buatDasar(indukId);
+
+		hasil.refId = refId;
+		hasil.typeExp = EXP_REF_FUNGSI;
+
+		this.daftar.push(hasil);
+
+
+		this.validate(hasil);
+
+		return hasil;
+	}
+
+	validate(obj: IExp): void {
+		console.group('validasi exp:');
+		this.get(obj.id);
+		if (obj.typeExp != EXP_BINOP) {
+			this.getNama(obj);
+		}
+		console.groupEnd();
 	}
 
 	get(id: number): IExp {
@@ -34,15 +68,88 @@ class Exp {
 			}
 		})
 
+		if (!hasil) {
+			throw Error('exp tidak ketemu, id: ' + id);
+		}
+
+		if (hasil.type != TY_EXP) {
+			console.error(hasil);
+			throw Error('tipe invalid, id: ' + id);
+		}
+
+		return hasil;
+	}
+
+	getFung(expObj: IExp): IPanggilFungsi {
+		let hasil: IPanggilFungsi;
+
+		if (expObj.typeExp != EXP_REF_FUNGSI) {
+			throw Error('invalid exp');
+		}
+
+		hasil = panggilFungsi.get(expObj.refId);
+
+		if (!hasil) {
+			console.error('fung tidak ketemu, exp id: ' + expObj.id);
+		}
+
 		return hasil;
 	}
 
 	getValue(exp: IExp): IValue {
+		if (exp.typeExp != EXP_VALUE) {
+			throw Error('invalid exp');
+		}
+
 		return value.get(exp.refId);
 	}
 
 	getVar(exp: IExp): IVar {
-		return Variable.getVar(exp.refId);
+		if (exp.typeExp != EXP_REF_VAR) {
+			throw Error('invalid exp');
+		}
+
+		return Variable.get(exp.refId);
+	}
+
+	getNamaById(id: number): string {
+		return this.getNama(this.get(id));
+	}
+
+	getNama(expObj: IExp): string {
+		let hasil: string = '';
+
+		console.log('get nama:');
+		console.log('exp:');
+		console.log(expObj);
+
+		if (expObj.typeExp == EXP_REF_VAR) {
+			let varObj: IVar;
+
+			varObj = this.getVar(expObj);
+			hasil = varObj.nama;
+		}
+		else if (expObj.typeExp == EXP_VALUE) {
+			let valueObj: IValue;
+
+			console.log('exp is value');
+			valueObj = this.getValue(expObj);
+			hasil = valueObj.nama;
+
+		}
+		else if (expObj.typeExp == EXP_REF_FUNGSI) {
+			let fungObj: IPanggilFungsi;
+
+			fungObj = this.getFung(expObj);
+			hasil = panggilFungsi.nama(fungObj);
+		}
+		else {
+			console.log("error, exp:");
+			console.log(expObj);
+			throw Error('exp type invalid: ' + expObj.typeExp);
+		}
+
+		return hasil;
 	}
 
 }

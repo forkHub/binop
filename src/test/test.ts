@@ -1,14 +1,17 @@
-
+//var isi
 function testVariIsi(): void {
 	let varisiObj: IVarIsi;
 	let varIsiView: VarisiViewItem;
+	let valueObj: IValue;
+	let expObj: IExp;
 
-	varisiObj = VarIsi.buatValue(0);
+	valueObj = value.buat(0);
+	expObj = exp.buatValue(0, valueObj.id);
+	varisiObj = VarIsi.buatValue(0, expObj.id);
+
 	varIsiView = new VarisiViewItem(varisiObj);
 
-	Variable.buatVarObj('test1', 0);
-	Variable.buatVarObj('test2', 0);
-	Variable.buatVarObj('test3', 0);
+	buatContohVar();
 
 	varIsiView.attach(document.body);
 }
@@ -20,27 +23,43 @@ function testVarIsiBinop(): void {
 	varisiObj = VarIsi.buatBinop(0);
 	varIsiView = new VarisiBinopViewItem(varisiObj);
 
-	Variable.buatVarObj('test1', 0);
-	Variable.buatVarObj('test2', 0);
-	Variable.buatVarObj('test3', 0);
+	buatContohVar();
 
 	varIsiView.attach(document.body);
 }
 
+function testVarIsiFungsi(): void {
+	let varisiObj: IVarIsi;
+	let varIsiView: VarIsiFungView;
+	let paramAr: IParam[];
+	let fung: IDekFungsi;
+
+	paramAr = buatParam();
+
+	buatContohVar();
+	buatContohFungsi();
+
+	fung = DekFungsi.buatParam('fungContoh', 0, paramAr);
+
+	varisiObj = VarIsi.buatFungsi(0, fung.id);
+	varIsiView = new VarIsiFungView(varisiObj);
+
+	varIsiView.attach(document.body);
+}
+
+//exp
 function testExpForm(): void {
 	let expForm: ExpForm;
 	let expObj: IExp;
+	let valueObj: IValue;
 
 	window.localStorage.clear();
 
-	Variable.buatVarObj('test', 0);
+	buatContohVar();
 
-	expObj = exp.buat(0, true);
+	valueObj = value.buat(0)
+	expObj = exp.buatValue(0, valueObj.id);
 	expForm = new ExpForm(expObj, () => { });
-
-	//validate
-	//validate exp reference ada
-	//validate exp tipenya value atau variable
 
 	expForm.attach(document.body);
 }
@@ -48,87 +67,92 @@ function testExpForm(): void {
 function testExpEd(): void {
 	let expObj: IExp;
 	let expEd: ExpEd;
+	let valueObj: IValue;
 
 	window.localStorage.clear();
 
-	Variable.buatVarObj('test0', 0);
-	Variable.buatVarObj('test1', 0);
-	Variable.buatVarObj('test2', 0);
+	buatContohVar();
 
-	expObj = exp.buat(0, true);
+	valueObj = value.buat(0);
+	expObj = exp.buatValue(0, valueObj.id);
 	expEd = new ExpEd(expObj);
 
 	expEd.attach(document.body);
 }
 
+//binop
 function testBinop(): void {
 	let binopObj: IBinop;
 	let binopEd: BinopEditorFragment;
 
-	Variable.buatVarObj('test0', 0);
-	Variable.buatVarObj('test1', 0);
-	Variable.buatVarObj('test2', 0);
+	buatContohVar();
 
-	binopObj = Binop.baru(0, 0);
+	binopObj = Binop.baru(0);
 
 	binopEd = new BinopEditorFragment(binopObj);
 	binopEd.attach(document.body);
 }
 
-function testFungEd(): void {
+//fungsi
+function testPanggilFungsi(): void {
 	let fEd: PanggilFungsiEd;
 	let f: IPanggilFungsi;
 	let fd: IDekFungsi;
 	let paramAr: IParam[];
 
-	paramAr = [
-		param.buat(0, 'param1'),
-		param.buat(0, 'param2'),
-		param.buat(0, 'param3'),
-		param.buat(0, 'param4'),
-		param.buat(0, 'param5'),
-	]
+	buatContohFungsi();
 
-	Variable.buatVarObj('test 1', 0);
-	Variable.buatVarObj('test 2', 0);
-	Variable.buatVarObj('test 3', 0);
-	Variable.buatVarObj('test 4', 0);
-	Variable.buatVarObj('test 5', 0);
-
+	paramAr = buatParam();
 	fd = DekFungsi.buatParam('fungsi1', 0, paramAr);
 	f = panggilFungsi.buat(0, fd.id);
 
-	DekFungsi.buatParam('fungsi 1', 0, paramAr);
-	DekFungsi.buatParam('fungsi 2', 0, paramAr);
-	DekFungsi.buatParam('fungsi 3', 0, paramAr);
-	DekFungsi.buatParam('fungsi 4', 0, paramAr);
-	DekFungsi.buatParam('fungsi 5', 0, paramAr);
+	console.log('panggil fungsi:');
+	console.log(f);
 
 	fEd = new PanggilFungsiEd(f);
 	fEd.attach(document.body);
 }
 
-function testPilihVariable(): void {
-	let paramAr: IParam[] = [
-		param.buat(0, 'p1'),
-		param.buat(0, 'p2'),
-		param.buat(0, 'p3'),
-		param.buat(0, 'p4'),
-	];
+function testPilihFungsi(): void {
+	buatContohFungsi();
 
-	DekFungsi.buatParam('fungsi 1', 0, paramAr);
-	DekFungsi.buatParam('fungsi 2', 0, paramAr);
-	DekFungsi.buatParam('fungsi 3', 0, paramAr);
-	DekFungsi.buatParam('fungsi 4', 0, paramAr);
-	DekFungsi.buatParam('fungsi 5', 0, paramAr);
-
-	pilihFungsi.finish = () => {
-
-	}
+	pilihFungsi.finish = () => { }
 	pilihFungsi.tampil(DekFungsi.daftar);
 }
 
-//test var isi binop
+
+//data gen
+function buatContohFungsi(): void {
+	let paramAr: IParam[];
+
+	paramAr = buatParam();
+
+	DekFungsi.buatParam('fungsi1', 0, paramAr);
+}
+
+function buatContohVar(): void {
+	Variable.buatVarObj('test1', 0);
+	Variable.buatVarObj('test2', 0);
+	Variable.buatVarObj('test3', 0);
+}
+
+function buatParam(): IParam[] {
+	let paramAr: IParam[];
+
+	paramAr = [
+		param.buat(0, 'param1'),
+		// param.buat(0, 'param2'),
+		// param.buat(0, 'param3'),
+		// param.buat(0, 'param4'),
+		// param.buat(0, 'param5'),
+	]
+
+	return paramAr;
+}
+
+
+
+
 //test var isi panggil fungsi
 
 //test for
