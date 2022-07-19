@@ -101,13 +101,14 @@ function testPanggilFungsi(): void {
 	let paramAr: IParam[];
 
 	buatContohFungsi();
+	buatContohVar();
 
 	paramAr = buatParam();
 	fd = DekFungsi.buatParam('fungsi1', 0, paramAr);
 	f = panggilFungsi.buat(0, fd.id);
 
-	console.log('panggil fungsi:');
-	console.log(f);
+	// console.log('panggil fungsi:');
+	// console.log(f);
 
 	fEd = new PanggilFungsiEd(f);
 	fEd.attach(document.body);
@@ -119,7 +120,6 @@ function testPilihFungsi(): void {
 	pilihFungsi.finish = () => { }
 	pilihFungsi.tampil(DekFungsi.daftar);
 }
-
 
 //data gen
 function buatContohFungsi(): void {
@@ -148,6 +148,39 @@ function buatParam(): IParam[] {
 	]
 
 	return paramAr;
+}
+
+interface IObj {
+	_x: number,
+	_y: number,
+	x: number,
+	y: number,
+	f: () => void
+}
+
+function testObj(): void {
+	let obj: IObj = {
+		_x: 0,
+		_y: 0,
+
+		set x(v: number) {
+			this._x = v;
+		},
+
+		set y(v: number) {
+			this._y = v;
+		},
+
+		f: () => {
+			console.log("this.x");
+		}
+	}
+
+	obj.x = 5;
+	obj._x = 8;
+
+	console.log(obj);
+	console.log(JSON.stringify(obj));
 }
 
 

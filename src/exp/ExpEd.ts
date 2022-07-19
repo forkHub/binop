@@ -4,7 +4,7 @@ class ExpEd extends ha.comp.BaseComponent {
     constructor(expObj: IExp) {
         super();
         this._template = `
-            <div class='exp padding border disp-inline-block'>
+            <div class='exp padding border disp-inline-block user-select-none cursor-pointer'>
             </div>
         `;
         this.build();
@@ -21,8 +21,8 @@ class ExpEd extends ha.comp.BaseComponent {
     }
 
     display(): void {
-        console.group('display');
-        console.log(this.expObj);
+        // console.group('display');
+        // console.log(this.expObj);
 
         if (this.expObj.typeExp == EXP_VALUE) {
             let valueObj: IValue;
@@ -33,8 +33,8 @@ class ExpEd extends ha.comp.BaseComponent {
 
             this._elHtml.innerText = valueLit;
 
-            console.log('value:');
-            console.log(valueObj);
+            // console.log('value:');
+            // console.log(valueObj);
 
         }
         else if (this.expObj.typeExp == EXP_REF_VAR) {
@@ -44,7 +44,7 @@ class ExpEd extends ha.comp.BaseComponent {
             throw Error('exp type tidak di support: ' + this.expObj.typeExp);
         }
 
-        console.groupEnd();
+        // console.groupEnd();
 
     }
 }

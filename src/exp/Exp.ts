@@ -33,30 +33,49 @@ class Exp {
 		return hasil;
 	}
 
-	buatFungsi(indukId: number, refId: number): IExp {
+	buatFungsi(indukId: number, fungId: number): IExp {
 		let hasil: IExp;
+		let panggilFungsiObj: IPanggilFungsi;
 
-		panggilFungsi.get(refId);
+		panggilFungsiObj = panggilFungsi.buat(0, fungId);
 		hasil = this.buatDasar(indukId);
 
-		hasil.refId = refId;
+		hasil.refId = panggilFungsiObj.id;
 		hasil.typeExp = EXP_REF_FUNGSI;
 
 		this.daftar.push(hasil);
-
 
 		this.validate(hasil);
 
 		return hasil;
 	}
 
+	// buatFungsi(indukId: number, refId: number): IExp {
+	// 	let hasil: IExp;
+
+	// 	panggilFungsi.get(refId);
+	// 	hasil = this.buatDasar(indukId);
+
+	// 	hasil.refId = refId;
+	// 	hasil.typeExp = EXP_REF_FUNGSI;
+
+	// 	this.daftar.push(hasil);
+
+
+	// 	this.validate(hasil);
+
+	// 	return hasil;
+	// }
+
 	validate(obj: IExp): void {
-		console.group('validasi exp:');
+		// console.group('validasi exp:');
+
 		this.get(obj.id);
 		if (obj.typeExp != EXP_BINOP) {
 			this.getNama(obj);
 		}
-		console.groupEnd();
+
+		// console.groupEnd();
 	}
 
 	get(id: number): IExp {
@@ -119,9 +138,9 @@ class Exp {
 	getNama(expObj: IExp): string {
 		let hasil: string = '';
 
-		console.log('get nama:');
-		console.log('exp:');
-		console.log(expObj);
+		// console.log('get nama:');
+		// console.log('exp:');
+		// console.log(expObj);
 
 		if (expObj.typeExp == EXP_REF_VAR) {
 			let varObj: IVar;
@@ -132,8 +151,9 @@ class Exp {
 		else if (expObj.typeExp == EXP_VALUE) {
 			let valueObj: IValue;
 
-			console.log('exp is value');
+			// console.log('exp is value');
 			valueObj = this.getValue(expObj);
+
 			hasil = valueObj.nama;
 
 		}

@@ -27,7 +27,7 @@ class PanggilFungsi {
     private buildRef(f: IPanggilFungsi): void {
         let fg: IDekFungsi
 
-        console.group('build ref:');
+        // console.group('build ref:');
 
         fg = DekFungsi.get(f.refId);
 
@@ -46,12 +46,12 @@ class PanggilFungsi {
             exp.get(expObj.id);
         });
 
-        console.log('param:');
-        console.log(f.param);
+        // console.log('param:');
+        // console.log(f.param);
 
-        console.log('id: ' + f.id);
+        // console.log('id: ' + f.id);
 
-        console.groupEnd();
+        // console.groupEnd();
     }
 
     get(id: number): IPanggilFungsi {
@@ -85,7 +85,7 @@ class PanggilFungsi {
     buat(indukId: number, refId: number): IPanggilFungsi {
         let hasil: IPanggilFungsi;
 
-        console.group('buat panggil fungsi:');
+        // console.group('buat panggil fungsi:');
 
         hasil = {
             id: Id.id,
@@ -101,40 +101,29 @@ class PanggilFungsi {
         //build reference
         this.buildRef(hasil);
 
-        dataObj.debug();
+        // dataObj.debug();
 
         dataObj.push(hasil);
 
-        dataObj.debug();
+        // dataObj.debug();
 
         //validasi
         panggilFungsi.get(hasil.id);
 
-        console.group('validasi panggil fungsi');
-        console.log('panggil fungsi:');
-        console.log(hasil);
-        console.log(hasil.id);
-
-        console.log('param:')
-        console.log(hasil.param);
-
-        // console.log('data ar:');
-        // console.log(dataObj.dataAr);
-
         hasil.param.forEach((item: number) => {
 
-            console.group('validasi param')
-            console.log('item: ' + item);
+            // console.group('validasi param')
+            // console.log('item: ' + item);
 
             exp.getNamaById(item);
 
-            console.groupEnd();
+            // console.groupEnd();
 
         })
 
-        console.groupEnd();
+        // console.groupEnd();
 
-        console.groupEnd();
+        // console.groupEnd();
 
         return hasil;
     }

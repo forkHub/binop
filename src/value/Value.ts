@@ -8,17 +8,17 @@ class Value {
 	buat(indukId: number): IValue {
 		let hasil: IValue;  //TODO:
 
-		console.log('buat value:');
+		// console.log('buat value:');
 
-		hasil = {
-			id: Id.id,
-			indukId: indukId,
-			ket: '',
-			nama: '',
-			tipeValue: 'teks',
-			type: TY_VALUE,
-			value: '0'
-		}
+		hasil = new ValueObj(
+			Id.id,
+			indukId,
+			'',
+			'',
+			'teks',
+			TY_VALUE,
+			'0'
+		)
 
 		dataObj.push(hasil);
 		dataObj.simpan();
@@ -31,7 +31,7 @@ class Value {
 	get(id: number): IValue {
 		let hasil: IValue;
 
-		console.log('get value by id: ' + id);
+		// console.log('get value by id: ' + id);
 
 		hasil = dataObj.getById(id) as IValue;
 

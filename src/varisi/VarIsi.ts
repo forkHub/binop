@@ -59,22 +59,24 @@ class VarIsi {
 		})
 	}
 
-	static buatFungsi(indukId: number, refId: number): IVarIsi {
+	static buatFungsi(indukId: number, fungId: number): IVarIsi {
 		let hasil: IVarIsi;
-		let expObj: IExp;
-		let panggilFung: IPanggilFungsi;
+		// let expObj: IExp;
+		// let panggilFung: IPanggilFungsi;
 
 		hasil = this.buatDasar(indukId);
-		expObj = this.getExp(hasil);
-		panggilFung = panggilFungsi.buat(hasil.id, refId);
-		expObj.refId = panggilFung.id;
-		expObj.typeExp = EXP_REF_FUNGSI;
+		hasil.refId = exp.buatFungsi(hasil.id, fungId).id;
+
+		// expObj = this.getExp(hasil);
+		// panggilFung = panggilFungsi.buat(hasil.id, refExpId);
+		// expObj.refId = panggilFung.id;
+		// expObj.typeExp = EXP_REF_FUNGSI;
 
 		console.group('buat vari isi function');
 		console.log(hasil);
-		console.log(expObj);
-		console.log(panggilFung);
-		console.log(DekFungsi.get(panggilFung.refId));
+		// console.log(expObj);
+		// console.log(panggilFung);
+		// console.log(DekFungsi.get(panggilFung.refId));
 		console.groupEnd()
 
 		this.simpanObj(hasil);

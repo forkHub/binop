@@ -30,3 +30,7 @@ interface IValue extends IData {
 	tipeValue: "teks" | "angka" | "ar_angka" | "ar_teks", //ar pakai id
 	value: string
 }
+
+interface IFor extends IData {
+
+}

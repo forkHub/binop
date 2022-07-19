@@ -1,0 +1,7 @@
+setter getter pada handler
+
+fase 2:
+=======
+menu di bawah, menu kontek bertingkat
+model seperti scracth, bukan drap-drop
+bisa recursive

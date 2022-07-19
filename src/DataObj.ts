@@ -14,10 +14,10 @@ class DataObj {
 	}
 
 	push(item: IData): void {
-		console.group('push');
-		console.log('push, id: ' + item.id);
+		// console.group('push');
+		// console.log('push, id: ' + item.id);
 
-		this.debug();
+		// this.debug();
 
 		if (this.getById(item.id)) {
 			console.log(this.dataAr);
@@ -25,14 +25,16 @@ class DataObj {
 			throw Error('duplikat');
 		}
 
-		this.debug();
+		// this.debug();
 
 		this.dataAr.push(item);
-		console.log(this.dataAr);
-		console.log(JSON.stringify(this.dataAr));
+
+		// console.log(this.dataAr);
+		// console.log(JSON.stringify(this.dataAr));
+
 		this.validasi()
 
-		console.groupEnd();
+		// console.groupEnd();
 	}
 
 	debug(): void {
