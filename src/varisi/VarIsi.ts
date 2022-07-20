@@ -84,16 +84,27 @@ class VarIsi {
 		return hasil;
 	}
 
-	static buatValue(indukId: number, expValueId: number): IVarIsi {
-		let hasil: IVarIsi;
+	static buatValue2(indukId: number): IVarIsi {
 		let expObj: IExp;
+		let valueObj: IValue;
+
+		valueObj = value.buat(0);
+		expObj = exp.buatValue(indukId, valueObj);
+		value.setIndukId(valueObj, expObj.id);
+
+		// return 
+		return null;
+	}
+
+	static buatValue(indukId: number, expValue: IExp): IVarIsi {
+		let hasil: IVarIsi;
+		// let expObj: IExp;
 
 		//validate
-		expObj = exp.get(expValueId);
-		exp.getValue(expObj);
+		exp.getValue(expValue);
 
 		hasil = this.buatDasar(indukId);
-		hasil.refId = expValueId;
+		hasil.refId = expValue.id;
 
 		this.simpanObj(hasil);
 
@@ -167,6 +178,11 @@ class VarIsi {
 
 		//self
 		Stmt.get(obj.id); //TODO: check
+	}
+
+	//setter
+	static setIndukId(obj: IVarIsi, id: number): void {
+		obj.indukId = id;
 	}
 
 }

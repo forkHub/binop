@@ -1,6 +1,8 @@
-class ForNext extends ha.comp.BaseComponent {
+class ForNextEd extends ha.comp.BaseComponent {
+    private forObj: IFor;
+
     //for [var-isi] to [exp] next [content]
-    constructor() {
+    constructor(forObj: IFor) {
         super();
         this._template = `
             <div clas='for-next'>
@@ -13,9 +15,12 @@ class ForNext extends ha.comp.BaseComponent {
                 </div>
                 <div class='stmt-cont disp-table'>
                 </div>
+                <div class='disp-table content'>Next</div>
             </div>
         `;
         this.build();
+
+        this.forObj = forObj;
 
         //validate
         this.varCont;
@@ -24,7 +29,21 @@ class ForNext extends ha.comp.BaseComponent {
     }
 
     setup(): void {
+        //var isi
+        let varIsiObj: IVarIsi;
+        let varIsiEd: VarisiViewItem;
 
+        varIsiObj = VarIsi.buatValue(this.forObj.id, exp.buatValue(0, value.buat(0)));
+        varIsiEd = new VarisiViewItem(varIsiObj);
+        varIsiEd.attach(this.varCont);
+
+        //exp
+        let expObj: IExp;
+        let expEd: ExpEd;
+
+        expObj = exp.buatValue(this.forObj.id, value.buat(0));
+        expEd = new ExpEd(expObj);
+        expEd.attach(this.expCont);
     }
 
     get varCont(): HTMLElement {
@@ -41,4 +60,3 @@ class ForNext extends ha.comp.BaseComponent {
 
 
 }
-const forNext: ForNext = new ForNext();

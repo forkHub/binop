@@ -1,7 +1,7 @@
 class Exp {
 	private readonly daftar: IExp[] = [];
 
-	private buatDasar(indukId: number): IExp {
+	buat(indukId: number): IExp {
 		let hasil: IExp;
 
 		hasil = {
@@ -17,12 +17,29 @@ class Exp {
 		return hasil;
 	}
 
-	buatValue(indukId: number, refId: number): IExp {
+	// buatValue3(indukid: number): IExp {
+	// 	let valueObj: IValue;
+
+	// 	valueObj = value.buat(0);
+	// 	return this.buatValue(indukid, valueObj);
+	// }
+
+	buatValue(indukId: number, valueObj: IValue): IExp {
 		let hasil: IExp;
 
+		hasil = this.buatValue2(indukId, valueObj.id);
+		value.setIndukId(valueObj, hasil.id);
+
+		return hasil;
+	}
+
+	private buatValue2(indukId: number, refId: number): IExp {
+		let hasil: IExp;
+
+		//validate
 		value.get(refId);
 
-		hasil = this.buatDasar(indukId);
+		hasil = this.buat(indukId);
 		hasil.refId = refId;
 		hasil.typeExp = EXP_VALUE;
 
@@ -33,12 +50,16 @@ class Exp {
 		return hasil;
 	}
 
-	buatFungsi(indukId: number, fungId: number): IExp {
+	buatFungsiObj(indukid: number, dekFungsi: IDekFungsi): IExp {
+		return this.buatFungsi(indukid, dekFungsi.id);
+	}
+
+	buatFungsi(indukId: number, dekFungsiId: number): IExp {
 		let hasil: IExp;
 		let panggilFungsiObj: IPanggilFungsi;
 
-		panggilFungsiObj = panggilFungsi.buat(0, fungId);
-		hasil = this.buatDasar(indukId);
+		panggilFungsiObj = panggilFungsi.buat(0, dekFungsiId);
+		hasil = this.buat(indukId);
 
 		hasil.refId = panggilFungsiObj.id;
 		hasil.typeExp = EXP_REF_FUNGSI;
@@ -49,23 +70,6 @@ class Exp {
 
 		return hasil;
 	}
-
-	// buatFungsi(indukId: number, refId: number): IExp {
-	// 	let hasil: IExp;
-
-	// 	panggilFungsi.get(refId);
-	// 	hasil = this.buatDasar(indukId);
-
-	// 	hasil.refId = refId;
-	// 	hasil.typeExp = EXP_REF_FUNGSI;
-
-	// 	this.daftar.push(hasil);
-
-
-	// 	this.validate(hasil);
-
-	// 	return hasil;
-	// }
 
 	validate(obj: IExp): void {
 		// console.group('validasi exp:');
@@ -170,6 +174,11 @@ class Exp {
 		}
 
 		return hasil;
+	}
+
+	//setter
+	setIndukId(obj: IExp, id: number): void {
+		obj.indukId = id;
 	}
 
 }

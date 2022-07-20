@@ -52,27 +52,27 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 			this.menu.view.attach(document.body);
 		}
 
-		this.expCont.onclick = (e: MouseEvent) => {
-			e.stopPropagation();
-			let valueStr: string;
+		// this.expCont.onclick = (e: MouseEvent) => {
+		// 	e.stopPropagation();
+		// 	let valueStr: string;
 
-			valueStr = window.prompt('value: ', VarIsi.getValue(this._item).value);
-			if (valueStr) {
-				VarIsi.getValue(this._item).value = valueStr;
-				this.expCont.innerText = valueStr;
-			}
-		}
+		// 	valueStr = window.prompt('value: ', VarIsi.getValue(this._item).value);
+		// 	if (valueStr) {
+		// 		VarIsi.getValue(this._item).value = valueStr;
+		// 		this.expCont.innerText = valueStr;
+		// 	}
+		// }
 
-		this.varCont.onclick = (e: MouseEvent) => {
-			e.stopPropagation();
-			dlgPilihVariable.view.attach(document.body);
-			dlgPilihVariable.tampil();
-			dlgPilihVariable.finish = () => {
-				this.varCont.innerText = Variable.nama(dlgPilihVariable.varDipilih);
-				this._item.varId = dlgPilihVariable.varDipilih;
-				dataObj.simpan();
-			}
-		}
+		// this.varCont.onclick = (e: MouseEvent) => {
+		// 	e.stopPropagation();
+		// 	dlgPilihVariable.view.attach(document.body);
+		// 	dlgPilihVariable.tampil();
+		// 	dlgPilihVariable.finish = () => {
+		// 		this.varCont.innerText = Variable.nama(dlgPilihVariable.varDipilih);
+		// 		this._item.varId = dlgPilihVariable.varDipilih;
+		// 		dataObj.simpan();
+		// 	}
+		// }
 
 	}
 
@@ -111,7 +111,8 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 	}
 
 	private setupExp(): void {
-
+		let expEd: ExpEd = new ExpEd(exp.get(this._item.refId));
+		expEd.attach(this.expCont);
 	}
 
 	private setupVar(): void {

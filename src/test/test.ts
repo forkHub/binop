@@ -6,8 +6,8 @@ function testVariIsi(): void {
 	let expObj: IExp;
 
 	valueObj = value.buat(0);
-	expObj = exp.buatValue(0, valueObj.id);
-	varisiObj = VarIsi.buatValue(0, expObj.id);
+	expObj = exp.buatValue(0, valueObj);
+	varisiObj = VarIsi.buatValue(0, expObj);
 
 	varIsiView = new VarisiViewItem(varisiObj);
 
@@ -58,7 +58,7 @@ function testExpForm(): void {
 	buatContohVar();
 
 	valueObj = value.buat(0)
-	expObj = exp.buatValue(0, valueObj.id);
+	expObj = exp.buatValue(0, valueObj);
 	expForm = new ExpForm(expObj, () => { });
 
 	expForm.attach(document.body);
@@ -74,7 +74,7 @@ function testExpEd(): void {
 	buatContohVar();
 
 	valueObj = value.buat(0);
-	expObj = exp.buatValue(0, valueObj.id);
+	expObj = exp.buatValue(0, valueObj);
 	expEd = new ExpEd(expObj);
 
 	expEd.attach(document.body);

@@ -31,6 +31,7 @@ interface IValue extends IData {
 	value: string
 }
 
-interface IFor extends IData {
-
+interface IFor extends IStmt {
+	varRef: number;	//referense ke var = value
+	toRef: number;	//referense ke to
 }

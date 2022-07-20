@@ -24,7 +24,7 @@ class Binop {
 		valueObj = value.buat(0);
 
 		hasil = this.buatDasar(indukId);
-		this.setExp(hasil, exp.buatValue(hasil.id, valueObj.id).id, exp.buatValue(hasil.id, valueObj.id).id);
+		this.setExp(hasil, exp.buatValue(hasil.id, valueObj).id, exp.buatValue(hasil.id, valueObj).id);
 
 		return hasil;
 	}

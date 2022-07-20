@@ -52,5 +52,9 @@ class Value {
 		this.get(obj.id);
 	}
 
+	setIndukId(obj: IValue, value: number): void {
+		obj.indukId = value;
+	}
+
 }
 const value: Value = new Value();

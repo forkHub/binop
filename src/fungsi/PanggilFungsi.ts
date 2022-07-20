@@ -39,7 +39,7 @@ class PanggilFungsi {
             item;
 
             valueObj = value.buat(0);
-            expObj = exp.buatValue(0, valueObj.id);
+            expObj = exp.buatValue(0, valueObj);
             f.param.push(expObj.id);
 
             //validasi
