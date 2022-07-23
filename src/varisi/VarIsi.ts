@@ -110,10 +110,10 @@ class VarIsi {
 		let hasil: IVarIsi;
 
 		hasil = this.buatDasar(indukId);
-		hasil.expId = Exp.buat(hasil.id).id;
+		hasil.expId = Exp.buatDef(hasil.id).id;
 		hasil.varRefId = VarRef.buat(hasil.id).id;
 
-		return null;
+		return hasil;
 	}
 
 	//TODO: diganti

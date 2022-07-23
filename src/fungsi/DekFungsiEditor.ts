@@ -73,7 +73,7 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 			if (stmt.stmtType == STMT_VAR_ISI) {
 				console.log('var isi:');
 
-				let view: VarisiViewItem = new VarisiViewItem(stmt as IVarIsi, true);
+				let view: VarIsiEd = new VarIsiEd(stmt as IVarIsi, true);
 
 				view.attach(this.daftarStmt);
 			}
@@ -113,7 +113,7 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 			label: 'nama = value',
 			f: () => {
 				let obj: IVarIsi;
-				let view: VarisiViewItem;
+				let view: VarIsiEd;
 				// let valueObj: IValue;
 				let expObj: IExp;
 
@@ -125,7 +125,7 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 				// valueObj = value.buat(expObj.id);
 				// expObj.refId = valueObj.id;
 
-				view = new VarisiViewItem(obj, true);
+				view = new VarIsiEd(obj, true);
 
 				this._item.stmtAr.push(obj.id);
 				view.attach(this.daftarStmt);

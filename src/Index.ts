@@ -16,13 +16,13 @@ function init(): void {
 }
 
 window.onload = () => {
-	// testVariIsi();
+	testVariIsi();
 	// testVarIsiBinop();
 	// testVarIsiFungsi();
 
 	// testPanggilFungsi();
 	// testExpEd();
-	testExpEd2();
+	// testExpEd2();
 	// testExpForm();
 	// testBinop();
 	// testPilihFungsi();

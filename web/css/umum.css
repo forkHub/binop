@@ -154,6 +154,7 @@ a.bersih {
 
 .disp-cell {
 	display: table-cell;
+	vertical-align: middle;
 }
 
 .border {
@@ -167,6 +168,14 @@ a.bersih {
 
 .padding-4 {
 	padding: 4px;
+}
+
+.padding-kiri {
+	padding-left: 8px;
+}
+
+.padding-kanan {
+	padding-right: 8px;
 }
 
 .margin {

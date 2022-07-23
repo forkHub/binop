@@ -1,27 +1,28 @@
-class VarisiViewItem extends ha.comp.BaseComponent {
+class VarIsiEd extends ha.comp.BaseComponent {
 	private _item: IVarIsi;
 
 	private menu: ha.comp.MenuPopup;
 	private varCont: HTMLElement;
 	private expCont: HTMLElement;
-	// private tblMenu: HTMLButtonElement;
 
 	constructor(item: IVarIsi, del: boolean) {
 		super();
 		this._template = `
-			<div class='var-isi'>
-				<div class='padding bevel-2 wbreak-keep-all wspace-nowrap'>
+			<div class='var-isi disp-table padding bevel-2'>
 
-					<div class='disp-inline-block var-isi menu-cont'>
+					<div class='disp-cell var-isi menu-cont'>
 						<button class='menu'>|||</button>
 					</div>
 
-					<div class='disp-inline-block wspace-nowrap'>
-						<div class='var-cont disp-inline-block'>
-						</div>
-						<div class='sama-dengan disp-inline-block'>=
-						</div>
-						<div class='exp-cont disp-inline-block'>
+					<div class='disp-cell'>
+						<div class='disp-table'>
+							<div class='var-isi var-cont disp-cell padding-kanan'>
+								
+							</div>
+							<div class='sama-dengan disp-cell padding-kanan'>=
+							</div>
+							<div class='var-isi exp-cont disp-cell'>
+							</div>
 						</div>
 					</div>
 
@@ -29,7 +30,6 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 
 					</div>
 
-				</div>
 			</div>
 		`;
 
@@ -44,7 +44,7 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 		this.varCont = this.getEl('div.var-cont');
 		this.expCont = this.getEl('div.exp-cont');
 
-		this.debug();
+		// this.debug();
 		this.init();
 		this.setupEvent();
 	}
@@ -56,40 +56,17 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 
 			this.menu.view.attach(document.body);
 		}
-
-		// this.expCont.onclick = (e: MouseEvent) => {
-		// 	e.stopPropagation();
-		// 	let valueStr: string;
-
-		// 	valueStr = window.prompt('value: ', VarIsi.getValue(this._item).value);
-		// 	if (valueStr) {
-		// 		VarIsi.getValue(this._item).value = valueStr;
-		// 		this.expCont.innerText = valueStr;
-		// 	}
-		// }
-
-		// this.varCont.onclick = (e: MouseEvent) => {
-		// 	e.stopPropagation();
-		// 	dlgPilihVariable.view.attach(document.body);
-		// 	dlgPilihVariable.tampil();
-		// 	dlgPilihVariable.finish = () => {
-		// 		this.varCont.innerText = Variable.nama(dlgPilihVariable.varDipilih);
-		// 		this._item.varId = dlgPilihVariable.varDipilih;
-		// 		dataObj.simpan();
-		// 	}
-		// }
-
 	}
 
-	private debug(): void {
-		this.getEl('div.debug').innerText = JSON.stringify(this._item);
+	// private debug(): void {
+	// 	this.getEl('div.debug').innerText = JSON.stringify(this._item);
 
-		if (this._item.varRefId > 0) {
-			this.getEl('div.debug').innerText += "-----";
-			this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varRefId));
-		}
+	// 	if (this._item.varRefId > 0) {
+	// 		this.getEl('div.debug').innerText += "-----";
+	// 		this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varRefId));
+	// 	}
 
-	}
+	// }
 
 	destroy(): void {
 		super.destroy();
@@ -116,19 +93,20 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 	}
 
 	private setupExp(): void {
-		let expEd: ExpEd = new ExpEd(Exp.get(this._item.expId));
-		expEd.attach(this.expCont);
+		let expEd2: ExpEd2 = new ExpEd2(Exp.get(this._item.expId));
+		expEd2.attach(this.expCont);
 	}
 
 	private setupVar(): void {
 		console.log('setup var:');
 		console.log('this._item.varId: ' + this._item.varRefId);
 
-		// let varEd: VarRefEd = new VarRefEd(this._item.varId, () => {
-		// 	this._item.varId = varEd.varId;
-		// });
-		// varEd.attach(this.varCont);
-		//TODO:
+		let varRef: IVarRef;
+		let varEd: VarRefEd;
+
+		varRef = VarRef.get(this._item.varRefId);
+		varEd = new VarRefEd(varRef, false);
+		varEd.attach(this.varCont);
 	}
 
 }

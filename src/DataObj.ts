@@ -56,8 +56,19 @@ class DataObj {
 		return hasil;
 	}
 
-	hapus(): void {
+	hapusSemua(): void {
 		window.localStorage.clear();
+	}
+
+	hapusId(id: number): void {
+		for (let i: number = 0; i < this.dataAr.length; i++) {
+			if (this.dataAr[i].id == id) {
+				this.dataAr.splice(i, 1);
+				return;
+			}
+		}
+
+		throw Error('delete tidak ketemu ' + id);
 	}
 
 	initHalaman(): void {

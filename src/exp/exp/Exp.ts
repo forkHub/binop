@@ -1,6 +1,25 @@
 class Exp {
 	private static readonly daftar: IExp[] = [];
 
+	static buatDef(indukId: number): IExp {
+		let hasil: IExp;
+
+		hasil = {
+			id: Id.id,
+			indukId: indukId,
+			ket: '',
+			nama: '',
+			type: TY_EXP,
+			refId: 0,
+			typeExp: EXP_VALUE
+		}
+
+		this.daftar.push(hasil);
+
+		return hasil;
+	}
+
+	//TODO: dihapus
 	static buat(indukId: number): IExp {
 		let hasil: IExp;
 

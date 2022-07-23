@@ -30,10 +30,10 @@ class ForNextEd extends ha.comp.BaseComponent {
     }
 
     setup(): void {
-        let varIsiEd: VarisiViewItem;
+        let varIsiEd: VarIsiEd;
         let expEd: ExpEd;
 
-        varIsiEd = new VarisiViewItem(VarIsi.get(this.forObj.varRef), false);
+        varIsiEd = new VarIsiEd(VarIsi.get(this.forObj.varRef), false);
         varIsiEd.attach(this.varCont);
 
         expEd = new ExpEd(Exp.get(this.forObj.toRef));

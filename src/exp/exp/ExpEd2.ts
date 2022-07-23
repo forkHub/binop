@@ -7,7 +7,7 @@ class ExpEd2 extends ha.comp.BaseComponent {
     constructor(exp: IExp) {
         super();
         this._template = `
-            <div class='exp bevel-1 disp-inline-block user-select-none cursor-pointer'>
+            <div class='exp bevel-1 user-select-none cursor-pointer'>
                 
             </div>
         `;
@@ -38,10 +38,29 @@ class ExpEd2 extends ha.comp.BaseComponent {
             }
         );
 
+        this.menu.buatTombol(
+            {
+                label: 'binop',
+                f: () => {
+                    this.tambahBinop();
+                },
+            }
+        );
+
         this._elHtml.onclick = (e: MouseEvent) => {
             e.stopPropagation();
             this.menu.view.attach(document.body);
         }
+    }
+
+    tambahBinop(): void {
+        let binop: IBinop;
+        let binopEd: BinopEd;
+
+        binop = Binop.buatDef(0);
+        binopEd = new BinopEd(binop);
+
+        binopEd.attach(this._elHtml);
     }
 
     tambahVar(): void {
@@ -49,7 +68,8 @@ class ExpEd2 extends ha.comp.BaseComponent {
         let varRef: IVarRef;
 
         varRef = VarRef.buat(this.exp.id);
-        editVar = new VarRefEd(varRef)
+        editVar = new VarRefEd(varRef, true)
+        editVar.attach(this._elHtml);
     }
 
     tambahValue(): void {

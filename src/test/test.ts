@@ -1,50 +1,13 @@
 //var isi
 function testVariIsi(): void {
-	let varisiObj: IVarIsi;
-	let varIsiView: VarisiViewItem;
-	// let valueObj: IValue;
-	let expObj: IExp;
-
-	// valueObj = value.buat(0);
-	expObj = Exp.buatValue(0);
-	varisiObj = VarIsi.buatValue(0, expObj);
-
-	varIsiView = new VarisiViewItem(varisiObj, true);
+	let varisi: IVarIsi;
+	let varisiEd: VarIsiEd;
 
 	buatContohVar();
 
-	varIsiView.attach(document.body);
-}
-
-function testVarIsiBinop(): void {
-	let varisiObj: IVarIsi;
-	let varIsiView: VarisiBinopViewItem;
-
-	varisiObj = VarIsi.buatBinop(0);
-	varIsiView = new VarisiBinopViewItem(varisiObj);
-
-	buatContohVar();
-
-	varIsiView.attach(document.body);
-}
-
-function testVarIsiFungsi(): void {
-	let varisiObj: IVarIsi;
-	let varIsiView: VarIsiFungView;
-	let paramAr: IParam[];
-	let fung: IDekFungsi;
-
-	paramAr = buatParam();
-
-	buatContohVar();
-	buatContohFungsi();
-
-	fung = DekFungsi.buatParam('fungContoh', 0, paramAr);
-
-	varisiObj = VarIsi.buatFungsi(0, fung.id);
-	varIsiView = new VarIsiFungView(varisiObj);
-
-	varIsiView.attach(document.body);
+	varisi = VarIsi.buatDef(0);
+	varisiEd = new VarIsiEd(varisi, true);
+	varisiEd.attach(document.body);
 }
 
 //exp
@@ -88,7 +51,7 @@ function testExpEd2(): void {
 
 	buatContohVar();
 
-	exp = Exp.buat(0);
+	exp = Exp.buatDef(0);
 	expEd = new ExpEd2(exp);
 
 	expEd.attach(document.body);
@@ -97,13 +60,13 @@ function testExpEd2(): void {
 //binop
 function testBinop(): void {
 	let binopObj: IBinop;
-	let binopEd: BinopEditorFragment;
+	let binopEd: BinopEd;
 
 	buatContohVar();
 
 	binopObj = Binop.baru(0);
 
-	binopEd = new BinopEditorFragment(binopObj);
+	binopEd = new BinopEd(binopObj);
 	binopEd.attach(document.body);
 }
 
