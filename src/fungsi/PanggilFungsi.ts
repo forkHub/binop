@@ -11,8 +11,8 @@ class PanggilFungsi {
             if (idx == paramIdx) {
                 let expObj: IExp;
 
-                expObj = exp.get(itemId);
-                hasil = exp.getNama(expObj);
+                expObj = Exp.get(itemId);
+                hasil = Exp.getNama(expObj);
             }
         })
 
@@ -33,17 +33,17 @@ class PanggilFungsi {
 
         f.param = [];
         fg.paramAr.forEach((item: IParam) => {
-            let valueObj: IValue;
+            // let valueObj: IValue;
             let expObj: IExp;
 
             item;
 
-            valueObj = value.buat(0);
-            expObj = exp.buatValue(0, valueObj);
+            // valueObj = value.buat(0);
+            expObj = Exp.buatValue(0);
             f.param.push(expObj.id);
 
             //validasi
-            exp.get(expObj.id);
+            Exp.get(expObj.id);
         });
 
         // console.log('param:');
@@ -115,7 +115,7 @@ class PanggilFungsi {
             // console.group('validasi param')
             // console.log('item: ' + item);
 
-            exp.getNamaById(item);
+            Exp.getNamaById(item);
 
             // console.groupEnd();
 

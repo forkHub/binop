@@ -22,9 +22,11 @@ window.onload = () => {
 
 	// testPanggilFungsi();
 	// testExpEd();
+	testExpEd2();
 	// testExpForm();
 	// testBinop();
 	// testPilihFungsi();
 
 	// testObj();
+	// testFor();
 }

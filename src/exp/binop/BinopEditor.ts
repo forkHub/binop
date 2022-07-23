@@ -1,4 +1,4 @@
-///<reference path="../comp/BaseComponent.ts"/>
+///<reference path="../../ha/comp/BaseComponent.ts"/>
 
 class BinopEditorFragment extends ha.comp.BaseComponent {
 	private binop: IBinop;
@@ -6,7 +6,7 @@ class BinopEditorFragment extends ha.comp.BaseComponent {
 	constructor(binop: IBinop) {
 		super();
 		this._template = `
-			<div class=''>
+			<div class='binop bevel-1'>
 				<div class=''>
 					<div class='wspace-nowrap'>
 
@@ -46,7 +46,7 @@ class BinopEditorFragment extends ha.comp.BaseComponent {
 	}
 
 	setExp(cont: HTMLElement, id: number): void {
-		let expObj: IExp = exp.get(id);
+		let expObj: IExp = Exp.get(id);
 		let expEd: ExpEd = new ExpEd(expObj);
 
 		expEd.attach(cont);

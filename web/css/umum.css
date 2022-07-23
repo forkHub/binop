@@ -32,6 +32,10 @@ button {
 	background-color: white;
 }
 
+.back-hitam {
+	background-color: black;
+}
+
 /* dialog */
 div.dialog {
 	position: fixed;
@@ -142,6 +146,14 @@ a.bersih {
 
 .disp-block {
 	display: block;
+}
+
+.disp-table {
+	display: table;
+}
+
+.disp-cell {
+	display: table-cell;
 }
 
 .border {

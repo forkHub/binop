@@ -4,23 +4,24 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 	private menu: ha.comp.MenuPopup;
 	private varCont: HTMLElement;
 	private expCont: HTMLElement;
+	// private tblMenu: HTMLButtonElement;
 
-	constructor(item: IVarIsi) {
+	constructor(item: IVarIsi, del: boolean) {
 		super();
 		this._template = `
-			<div class='var-isi padding-4'>
-				<div class='border padding-4 wbreak-keep-all wspace-nowrap'>
+			<div class='var-isi'>
+				<div class='padding bevel-2 wbreak-keep-all wspace-nowrap'>
 
-					<div class='disp-inline-block'>
+					<div class='disp-inline-block var-isi menu-cont'>
 						<button class='menu'>|||</button>
 					</div>
 
 					<div class='disp-inline-block wspace-nowrap'>
-						<div class='var-cont disp-inline-block border padding'>
+						<div class='var-cont disp-inline-block'>
 						</div>
-						<div class='sama-dengan disp-inline-block padding border'>=
+						<div class='sama-dengan disp-inline-block'>=
 						</div>
-						<div class='exp-cont disp-inline-block border padding'>
+						<div class='exp-cont disp-inline-block'>
 						</div>
 					</div>
 
@@ -33,6 +34,10 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 		`;
 
 		this.build();
+
+		if (!del) {
+			this.getEl('div.var-isi.menu-cont').style.display = 'none';
+		}
 
 		this._elHtml.setAttribute('id', item.id + '');
 		this._item = item;
@@ -79,9 +84,9 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 	private debug(): void {
 		this.getEl('div.debug').innerText = JSON.stringify(this._item);
 
-		if (this._item.varId > 0) {
+		if (this._item.varRefId > 0) {
 			this.getEl('div.debug').innerText += "-----";
-			this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varId));
+			this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varRefId));
 		}
 
 	}
@@ -111,18 +116,19 @@ class VarisiViewItem extends ha.comp.BaseComponent {
 	}
 
 	private setupExp(): void {
-		let expEd: ExpEd = new ExpEd(exp.get(this._item.refId));
+		let expEd: ExpEd = new ExpEd(Exp.get(this._item.expId));
 		expEd.attach(this.expCont);
 	}
 
 	private setupVar(): void {
 		console.log('setup var:');
-		console.log('this._item.varId: ' + this._item.varId);
+		console.log('this._item.varId: ' + this._item.varRefId);
 
-		let varEd: EditVariable = new EditVariable(this._item.varId, () => {
-			this._item.varId = varEd.varId;
-		});
-		varEd.attach(this.varCont);
+		// let varEd: VarRefEd = new VarRefEd(this._item.varId, () => {
+		// 	this._item.varId = varEd.varId;
+		// });
+		// varEd.attach(this.varCont);
+		//TODO:
 	}
 
 }

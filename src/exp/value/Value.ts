@@ -1,11 +1,12 @@
+//TODO: dibuat static
 class Value {
 
-	hapus(id: number): void {
+	static hapus(id: number): void {
 		id;
 		//TODO: sementara hapus tidak diimplement
 	}
 
-	buat(indukId: number): IValue {
+	static buat(indukId: number): IValue {
 		let hasil: IValue;  //TODO:
 
 		// console.log('buat value:');
@@ -28,7 +29,7 @@ class Value {
 		return hasil;
 	}
 
-	get(id: number): IValue {
+	static get(id: number): IValue {
 		let hasil: IValue;
 
 		// console.log('get value by id: ' + id);
@@ -48,13 +49,14 @@ class Value {
 		return hasil;
 	}
 
-	validasi(obj: IValue): void {
+	static validasi(obj: IValue): void {
 		this.get(obj.id);
 	}
 
-	setIndukId(obj: IValue, value: number): void {
+	static setIndukId(obj: IValue, value: number): void {
 		obj.indukId = value;
 	}
 
 }
-const value: Value = new Value();
+
+// const value: Value = new Value();

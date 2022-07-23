@@ -1,3 +1,5 @@
+///<reference path="../ha/comp/BaseComponent.ts"/>
+
 class PanggilFungsiEd extends ha.comp.BaseComponent {
     private panggilFungsiObj: IPanggilFungsi;
 
@@ -49,7 +51,7 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
             let expEd: ExpEd;
             let expObj: IExp;
 
-            expObj = exp.get(itemId)
+            expObj = Exp.get(itemId)
             expEd = new ExpEd(expObj);
             expEd.attach(this.argCont);
 

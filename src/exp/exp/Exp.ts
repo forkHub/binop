@@ -1,7 +1,7 @@
 class Exp {
-	private readonly daftar: IExp[] = [];
+	private static readonly daftar: IExp[] = [];
 
-	buat(indukId: number): IExp {
+	static buat(indukId: number): IExp {
 		let hasil: IExp;
 
 		hasil = {
@@ -24,23 +24,15 @@ class Exp {
 	// 	return this.buatValue(indukid, valueObj);
 	// }
 
-	buatValue(indukId: number, valueObj: IValue): IExp {
+	static buatValue(indukId: number): IExp {
 		let hasil: IExp;
+		let valueObj: IValue;
 
-		hasil = this.buatValue2(indukId, valueObj.id);
-		value.setIndukId(valueObj, hasil.id);
-
-		return hasil;
-	}
-
-	private buatValue2(indukId: number, refId: number): IExp {
-		let hasil: IExp;
-
-		//validate
-		value.get(refId);
-
+		valueObj = Value.buat(0);
 		hasil = this.buat(indukId);
-		hasil.refId = refId;
+		hasil.refId = valueObj.id;
+		Value.setIndukId(valueObj, hasil.id);
+
 		hasil.typeExp = EXP_VALUE;
 
 		this.daftar.push(hasil);
@@ -50,11 +42,28 @@ class Exp {
 		return hasil;
 	}
 
-	buatFungsiObj(indukid: number, dekFungsi: IDekFungsi): IExp {
+	// private static buatValue2(indukId: number, refId: number): IExp {
+	// 	let hasil: IExp;
+
+	// 	//validate
+	// 	value.get(refId);
+
+	// 	hasil = this.buat(indukId);
+	// 	hasil.refId = refId;
+	// 	hasil.typeExp = EXP_VALUE;
+
+	// 	this.daftar.push(hasil);
+
+	// 	this.validate(hasil);
+
+	// 	return hasil;
+	// }
+
+	static buatFungsiObj(indukid: number, dekFungsi: IDekFungsi): IExp {
 		return this.buatFungsi(indukid, dekFungsi.id);
 	}
 
-	buatFungsi(indukId: number, dekFungsiId: number): IExp {
+	static buatFungsi(indukId: number, dekFungsiId: number): IExp {
 		let hasil: IExp;
 		let panggilFungsiObj: IPanggilFungsi;
 
@@ -71,7 +80,7 @@ class Exp {
 		return hasil;
 	}
 
-	validate(obj: IExp): void {
+	static validate(obj: IExp): void {
 		// console.group('validasi exp:');
 
 		this.get(obj.id);
@@ -82,7 +91,7 @@ class Exp {
 		// console.groupEnd();
 	}
 
-	get(id: number): IExp {
+	static get(id: number): IExp {
 		let hasil: IExp;
 
 		this.daftar.forEach((item: IExp) => {
@@ -103,7 +112,7 @@ class Exp {
 		return hasil;
 	}
 
-	getFung(expObj: IExp): IPanggilFungsi {
+	static getFung(expObj: IExp): IPanggilFungsi {
 		let hasil: IPanggilFungsi;
 
 		if (expObj.typeExp != EXP_REF_FUNGSI) {
@@ -119,15 +128,15 @@ class Exp {
 		return hasil;
 	}
 
-	getValue(exp: IExp): IValue {
+	static getValue(exp: IExp): IValue {
 		if (exp.typeExp != EXP_VALUE) {
 			throw Error('invalid exp');
 		}
 
-		return value.get(exp.refId);
+		return Value.get(exp.refId);
 	}
 
-	getVar(exp: IExp): IVar {
+	static getVar(exp: IExp): IVar {
 		if (exp.typeExp != EXP_REF_VAR) {
 			throw Error('invalid exp');
 		}
@@ -135,11 +144,11 @@ class Exp {
 		return Variable.get(exp.refId);
 	}
 
-	getNamaById(id: number): string {
+	static getNamaById(id: number): string {
 		return this.getNama(this.get(id));
 	}
 
-	getNama(expObj: IExp): string {
+	static getNama(expObj: IExp): string {
 		let hasil: string = '';
 
 		// console.log('get nama:');
@@ -177,9 +186,7 @@ class Exp {
 	}
 
 	//setter
-	setIndukId(obj: IExp, id: number): void {
+	static setIndukId(obj: IExp, id: number): void {
 		obj.indukId = id;
 	}
-
 }
-const exp: Exp = new Exp();

@@ -1,3 +1,5 @@
+///<reference path="../ha/comp/BaseComponent.ts"/>
+
 class DekFungsiItemView extends ha.comp.BaseComponent {
     private menu: ha.comp.MenuPopup;
 

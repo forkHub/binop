@@ -1,4 +1,4 @@
-///<reference path="../comp/BaseComponent.ts"/>
+///<reference path="../../ha/comp/BaseComponent.ts"/>
 class PilihVariableItem extends ha.comp.BaseComponent {
 	private _finish: () => void;
 	public get finish(): () => void {
@@ -87,10 +87,10 @@ class DlgPilihVariable {
 	private _finish: () => void;
 	private _varDipilih: number;
 
-	public get varDipilih(): number {
+	public get varId(): number {
 		return this._varDipilih;
 	}
-	public set varDipilih(value: number) {
+	public set varId(value: number) {
 		this._varDipilih = value;
 	}
 

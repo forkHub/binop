@@ -8,6 +8,15 @@ interface IVar extends IData {
 	value: string;
 }
 
+interface IVarRef extends IData {
+	refId: number
+}
+
+interface IVarIsi extends IStmt {
+	varRefId: number,
+	expId: number,
+}
+
 interface IExp extends IData {
 	refId: number,
 	typeExp: string;

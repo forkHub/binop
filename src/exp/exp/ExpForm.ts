@@ -1,4 +1,4 @@
-///<reference path="../comp/BaseComponent.ts"/>
+///<reference path="../../ha/comp/BaseComponent.ts"/>
 
 /**
  * Form untuk edit exp property
@@ -62,7 +62,7 @@ class ExpForm extends ha.comp.BaseComponent {
 
 		this.build();
 		this.exp = exp;
-		this.value = value.buat(0);
+		this.value = Value.buat(0);
 		this.selesai = selesai;
 		this.setEvent();
 		this.setDisplay();
@@ -73,7 +73,7 @@ class ExpForm extends ha.comp.BaseComponent {
 
 		if (this.exp.typeExp == EXP_VALUE) {
 			(this.getEl('input.radio-value') as HTMLInputElement).checked = true;
-			this.literalHtml.value = value.get(this.exp.refId).value;
+			this.literalHtml.value = Value.get(this.exp.refId).value;
 
 			el = this.getEl('input.radio-value') as HTMLInputElement;
 			el.checked = true
@@ -114,7 +114,7 @@ class ExpForm extends ha.comp.BaseComponent {
 				}
 				else if (arg == EXP_REF_VAR) {
 					this.exp.refId = this.varId;
-					value.hapus(this.value.id);
+					Value.hapus(this.value.id);
 					this.exp.typeExp = EXP_REF_VAR;
 				}
 				else {
@@ -140,14 +140,14 @@ class ExpForm extends ha.comp.BaseComponent {
 			e.stopPropagation();
 			console.log('browse click');
 			dlgPilihVariable.finish = () => {
-				this.refHtml.value = Variable.nama(dlgPilihVariable.varDipilih);
-				this.varId = dlgPilihVariable.varDipilih;
+				this.refHtml.value = Variable.nama(dlgPilihVariable.varId);
+				this.varId = dlgPilihVariable.varId;
 
-				console.log('pilih var finish: ' + dlgPilihVariable.varDipilih);
+				console.log('pilih var finish: ' + dlgPilihVariable.varId);
 				console.log(this.literalHtml);
 				console.log('value: ' + this.literalHtml.value);
 				console.log('text: ' + this.literalHtml.innerText);
-				console.log('nama var: ' + Variable.nama(dlgPilihVariable.varDipilih));
+				console.log('nama var: ' + Variable.nama(dlgPilihVariable.varId));
 			}
 			dlgPilihVariable.tampil();
 		}

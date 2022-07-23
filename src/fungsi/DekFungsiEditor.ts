@@ -1,4 +1,4 @@
-///<reference path="../comp/BaseComponent.ts"/>
+///<reference path="../ha/comp/BaseComponent.ts"/>
 
 class DekFungsiEditor extends ha.comp.BaseComponent {
 	private _item: IDekFungsi;
@@ -73,7 +73,7 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 			if (stmt.stmtType == STMT_VAR_ISI) {
 				console.log('var isi:');
 
-				let view: VarisiViewItem = new VarisiViewItem(stmt as IVarIsi);
+				let view: VarisiViewItem = new VarisiViewItem(stmt as IVarIsi, true);
 
 				view.attach(this.daftarStmt);
 			}
@@ -114,18 +114,18 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 			f: () => {
 				let obj: IVarIsi;
 				let view: VarisiViewItem;
-				let valueObj: IValue;
+				// let valueObj: IValue;
 				let expObj: IExp;
 
-				valueObj = value.buat(0);
-				expObj = exp.buatValue(0, valueObj);
+				// valueObj = value.buat(0);
+				expObj = Exp.buatValue(0);
 				obj = VarIsi.buatValue(this._item.id, expObj);
 
 				// expObj = exp.get(obj.refId)
 				// valueObj = value.buat(expObj.id);
 				// expObj.refId = valueObj.id;
 
-				view = new VarisiViewItem(obj);
+				view = new VarisiViewItem(obj, true);
 
 				this._item.stmtAr.push(obj.id);
 				view.attach(this.daftarStmt);

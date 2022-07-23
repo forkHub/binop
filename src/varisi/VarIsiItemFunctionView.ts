@@ -84,12 +84,13 @@ class VarIsiFungView extends ha.comp.BaseComponent {
 
 	private setupVar(): void {
 		console.log('setup var:');
-		console.log('this._item.varId: ' + this._item.varId);
+		console.log('this._item.varId: ' + this._item.varRefId);
 
-		let varEd: EditVariable = new EditVariable(this._item.varId, () => {
-			this._item.varId = varEd.varId;
-		});
-		varEd.attach(this.varCont);
+		//TODO:
+		// let varEd: VarRefEd = new VarRefEd(this._item.varId, () => {
+		// 	this._item.varId = varEd.varId;
+		// });
+		// varEd.attach(this.varCont);
 	}
 
 }

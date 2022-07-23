@@ -1,10 +1,12 @@
+///<reference path="../../ha/comp/BaseComponent.ts"/>
+
 class ExpEd extends ha.comp.BaseComponent {
     private expObj: IExp;
 
     constructor(expObj: IExp) {
         super();
         this._template = `
-            <div class='exp padding border disp-inline-block user-select-none cursor-pointer'>
+            <div class='exp padding bevel-1 disp-inline-block user-select-none cursor-pointer'>
             </div>
         `;
         this.build();
@@ -28,7 +30,7 @@ class ExpEd extends ha.comp.BaseComponent {
             let valueObj: IValue;
             let valueLit: string;
 
-            valueObj = exp.getValue(this.expObj);
+            valueObj = Exp.getValue(this.expObj);
             valueLit = valueObj.value;
 
             this._elHtml.innerText = valueLit;
@@ -38,7 +40,7 @@ class ExpEd extends ha.comp.BaseComponent {
 
         }
         else if (this.expObj.typeExp == EXP_REF_VAR) {
-            this._elHtml.innerText = exp.getVar(this.expObj).nama;
+            this._elHtml.innerText = Exp.getVar(this.expObj).nama;
         }
         else {
             throw Error('exp type tidak di support: ' + this.expObj.typeExp);

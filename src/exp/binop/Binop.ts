@@ -19,12 +19,12 @@ class Binop {
 
 	static baru(indukId: number): IBinop {
 		let hasil: IBinop;
-		let valueObj: IValue;
+		// let valueObj: IValue;
 
-		valueObj = value.buat(0);
+		// valueObj = value.buat(0);
 
 		hasil = this.buatDasar(indukId);
-		this.setExp(hasil, exp.buatValue(hasil.id, valueObj).id, exp.buatValue(hasil.id, valueObj).id);
+		this.setExp(hasil, Exp.buatValue(hasil.id).id, Exp.buatValue(hasil.id).id);
 
 		return hasil;
 	}

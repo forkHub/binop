@@ -55,8 +55,8 @@ class VarisiBinopViewItem extends ha.comp.BaseComponent {
 			dlgPilihVariable.view.attach(document.body);
 			dlgPilihVariable.tampil();
 			dlgPilihVariable.finish = () => {
-				this.varCont.innerText = Variable.nama(dlgPilihVariable.varDipilih);
-				this._item.varId = dlgPilihVariable.varDipilih;
+				this.varCont.innerText = Variable.nama(dlgPilihVariable.varId);
+				this._item.varRefId = dlgPilihVariable.varId;
 				dataObj.simpan();
 			}
 		}
@@ -66,9 +66,9 @@ class VarisiBinopViewItem extends ha.comp.BaseComponent {
 	private debug(): void {
 		this.getEl('div.debug').innerText = JSON.stringify(this._item);
 
-		if (this._item.varId > 0) {
+		if (this._item.varRefId > 0) {
 			this.getEl('div.debug').innerText += "-----";
-			this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varId));
+			this.getEl('div.debug').innerText += JSON.stringify(Variable.get(this._item.varRefId));
 		}
 
 	}
@@ -101,19 +101,20 @@ class VarisiBinopViewItem extends ha.comp.BaseComponent {
 		let binopEd: BinopEditorFragment;
 		let binopObj: IBinop;
 
-		binopObj = Binop.get(this._item.refId);
+		binopObj = Binop.get(this._item.expId);
 		binopEd = new BinopEditorFragment(binopObj);
 		binopEd.attach(this.expCont);
 	}
 
 	private setupVar(): void {
 		console.log('setup var:');
-		console.log('this._item.varId: ' + this._item.varId);
+		console.log('this._item.varId: ' + this._item.varRefId);
 
-		let varEd: EditVariable = new EditVariable(this._item.varId, () => {
-			this._item.varId = varEd.varId;
-		});
-		varEd.attach(this.varCont);
+		//TODO:
+		// let varEd: VarRefEd = new VarRefEd(this._item.varId, () => {
+		// 	this._item.varId = varEd.varId;
+		// });
+		// varEd.attach(this.varCont);
 	}
 
 	private get expCont(): HTMLElement {

@@ -2,14 +2,14 @@
 function testVariIsi(): void {
 	let varisiObj: IVarIsi;
 	let varIsiView: VarisiViewItem;
-	let valueObj: IValue;
+	// let valueObj: IValue;
 	let expObj: IExp;
 
-	valueObj = value.buat(0);
-	expObj = exp.buatValue(0, valueObj);
+	// valueObj = value.buat(0);
+	expObj = Exp.buatValue(0);
 	varisiObj = VarIsi.buatValue(0, expObj);
 
-	varIsiView = new VarisiViewItem(varisiObj);
+	varIsiView = new VarisiViewItem(varisiObj, true);
 
 	buatContohVar();
 
@@ -51,14 +51,14 @@ function testVarIsiFungsi(): void {
 function testExpForm(): void {
 	let expForm: ExpForm;
 	let expObj: IExp;
-	let valueObj: IValue;
+	// let valueObj: IValue;
 
 	window.localStorage.clear();
 
 	buatContohVar();
 
-	valueObj = value.buat(0)
-	expObj = exp.buatValue(0, valueObj);
+	// valueObj = value.buat(0)
+	expObj = Exp.buatValue(0);
 	expForm = new ExpForm(expObj, () => { });
 
 	expForm.attach(document.body);
@@ -67,15 +67,29 @@ function testExpForm(): void {
 function testExpEd(): void {
 	let expObj: IExp;
 	let expEd: ExpEd;
-	let valueObj: IValue;
+	// let valueObj: IValue;
 
 	window.localStorage.clear();
 
 	buatContohVar();
 
-	valueObj = value.buat(0);
-	expObj = exp.buatValue(0, valueObj);
+	// valueObj = value.buat(0);
+	expObj = Exp.buatValue(0);
 	expEd = new ExpEd(expObj);
+
+	expEd.attach(document.body);
+}
+
+function testExpEd2(): void {
+	let exp: IExp;
+	let expEd: ExpEd2;
+
+	window.localStorage.clear();
+
+	buatContohVar();
+
+	exp = Exp.buat(0);
+	expEd = new ExpEd2(exp);
 
 	expEd.attach(document.body);
 }
@@ -119,6 +133,20 @@ function testPilihFungsi(): void {
 
 	pilihFungsi.finish = () => { }
 	pilihFungsi.tampil(DekFungsi.daftar);
+}
+
+function testFor(): void {
+	let ed: ForNextEd;
+	let forObj: IFor;
+	// let varIsi: IVarIsi;
+	// let exp: IExp;
+
+	// exp = Exp.buatValue(0);
+	// varIsi = VarIsi.buatExp(0, Exp.buatValue(0));
+	forObj = ForNext.buat(0);
+
+	ed = new ForNextEd(forObj);
+	ed.attach(document.body);
 }
 
 //data gen

@@ -1,4 +1,4 @@
-///<reference path="./comp/MenuPopUp.ts"/>
+///<reference path="./ha/comp/MenuPopUp.ts"/>
 
 class Project {
     static readonly template: string = `

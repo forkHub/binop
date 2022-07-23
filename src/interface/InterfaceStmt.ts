@@ -18,7 +18,4 @@ interface IParam extends IData {
 
 }
 
-interface IVarIsi extends IStmt {
-	varId: number,
-	refId: number,
-}
+

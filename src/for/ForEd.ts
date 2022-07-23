@@ -1,3 +1,5 @@
+///<reference path="../ha/comp/BaseComponent.ts"/>
+
 class ForNextEd extends ha.comp.BaseComponent {
     private forObj: IFor;
 
@@ -5,44 +7,36 @@ class ForNextEd extends ha.comp.BaseComponent {
     constructor(forObj: IFor) {
         super();
         this._template = `
-            <div clas='for-next'>
-                <div class='disp-table'>
-                    <div class='disp-cell'>for</div>
-                    <div class='var-isi-cont disp-cell'></div>
-                    <div class='disp-cell'>to</div>
-                    <div class='exp-cont disp-cell'></div>
-                    <div class='next disp-cell'>next</div>
+            <div class='for-next'>
+                <div class='disp-table padding bevel-2'>
+                    <div class='disp-cell bevel-1'>
+                        <button class='for-next button'>|||</button>
+                    </div>
+                    <div class='disp-cell'>for </div>
+                    <div class='var-isi-cont disp-cell bevel-1'></div>
+                    <div class='disp-cell'> to </div>
+                    <div class='for-next exp-cont disp-cell'></div>
                 </div>
                 <div class='stmt-cont disp-table'>
                 </div>
-                <div class='disp-table content'>Next</div>
+                <div class='disp-table bevel-2 padding'>Next</div>
             </div>
         `;
         this.build();
 
         this.forObj = forObj;
 
-        //validate
-        this.varCont;
-        this.expCont;
-        this.stmtCont;
+        this.setup();
     }
 
     setup(): void {
-        //var isi
-        let varIsiObj: IVarIsi;
         let varIsiEd: VarisiViewItem;
-
-        varIsiObj = VarIsi.buatValue(this.forObj.id, exp.buatValue(0, value.buat(0)));
-        varIsiEd = new VarisiViewItem(varIsiObj);
-        varIsiEd.attach(this.varCont);
-
-        //exp
-        let expObj: IExp;
         let expEd: ExpEd;
 
-        expObj = exp.buatValue(this.forObj.id, value.buat(0));
-        expEd = new ExpEd(expObj);
+        varIsiEd = new VarisiViewItem(VarIsi.get(this.forObj.varRef), false);
+        varIsiEd.attach(this.varCont);
+
+        expEd = new ExpEd(Exp.get(this.forObj.toRef));
         expEd.attach(this.expCont);
     }
 
@@ -51,7 +45,7 @@ class ForNextEd extends ha.comp.BaseComponent {
     }
 
     get expCont(): HTMLElement {
-        return this.getEl('div.exp-cont');
+        return this.getEl('div.for-next div.exp-cont.for-next');
     }
 
     get stmtCont(): HTMLElement {
