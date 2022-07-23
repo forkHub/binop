@@ -82,10 +82,8 @@ class PanggilFungsi {
         return hasil;
     }
 
-    buat(indukId: number, refId: number): IPanggilFungsi {
+    buat(indukId: number, fung: IDekFungsi): IPanggilFungsi {
         let hasil: IPanggilFungsi;
-
-        // console.group('buat panggil fungsi:');
 
         hasil = {
             id: Id.id,
@@ -93,7 +91,7 @@ class PanggilFungsi {
             ket: '',
             nama: '',
             param: [],
-            refId: refId,
+            refId: fung.id,
             stmtType: STMT_PANGGIL_FUNGSI,
             type: TY_STMT,
         }
@@ -101,31 +99,17 @@ class PanggilFungsi {
         //build reference
         this.buildRef(hasil);
 
-        // dataObj.debug();
-
         dataObj.push(hasil);
-
-        // dataObj.debug();
 
         //validasi
         panggilFungsi.get(hasil.id);
 
         hasil.param.forEach((item: number) => {
-
-            // console.group('validasi param')
-            // console.log('item: ' + item);
-
             Exp.getNamaById(item);
-
-            // console.groupEnd();
-
         })
-
-        // console.groupEnd();
-
-        // console.groupEnd();
 
         return hasil;
     }
 }
+
 const panggilFungsi: PanggilFungsi = new PanggilFungsi();

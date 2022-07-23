@@ -7,7 +7,7 @@ class ExpEd2 extends ha.comp.BaseComponent {
     constructor(exp: IExp) {
         super();
         this._template = `
-            <div class='exp bevel-1 user-select-none cursor-pointer'>
+            <div class='exp border text-align-center user-select-none cursor-pointer'>
                 
             </div>
         `;

@@ -82,7 +82,7 @@ function testPanggilFungsi(): void {
 
 	paramAr = buatParam();
 	fd = DekFungsi.buatParam('fungsi1', 0, paramAr);
-	f = panggilFungsi.buat(0, fd.id);
+	f = panggilFungsi.buat(0, fd);
 
 	// console.log('panggil fungsi:');
 	// console.log(f);

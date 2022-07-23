@@ -69,13 +69,13 @@ class VarIsi {
 		return hasil;
 	}
 
-	static buatFungsi(indukId: number, fungId: number): IVarIsi {
+	static buatFungsi(indukId: number, fung: IDekFungsi): IVarIsi {
 		let hasil: IVarIsi;
 		// let expObj: IExp;
 		// let panggilFung: IPanggilFungsi;
 
 		hasil = this.buatDasar(indukId);
-		hasil.expId = Exp.buatFungsi(hasil.id, fungId).id;
+		hasil.expId = Exp.buatFungsi(hasil.id, fung).id;
 
 		// expObj = this.getExp(hasil);
 		// panggilFung = panggilFungsi.buat(hasil.id, refExpId);

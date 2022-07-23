@@ -78,15 +78,17 @@ class Exp {
 	// 	return hasil;
 	// }
 
+	//TODO: dihapus
 	static buatFungsiObj(indukid: number, dekFungsi: IDekFungsi): IExp {
-		return this.buatFungsi(indukid, dekFungsi.id);
+		return this.buatFungsi(indukid, dekFungsi);
 	}
 
-	static buatFungsi(indukId: number, dekFungsiId: number): IExp {
+	//TODO: dihapus
+	static buatFungsi(indukId: number, fung: IDekFungsi): IExp {
 		let hasil: IExp;
 		let panggilFungsiObj: IPanggilFungsi;
 
-		panggilFungsiObj = panggilFungsi.buat(0, dekFungsiId);
+		panggilFungsiObj = panggilFungsi.buat(0, fung);
 		hasil = this.buat(indukId);
 
 		hasil.refId = panggilFungsiObj.id;

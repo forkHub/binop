@@ -1,5 +1,6 @@
 ///<reference path="../../ha/comp/BaseComponent.ts"/>
 
+//TODO: dihapus
 class ExpEd extends ha.comp.BaseComponent {
     private expObj: IExp;
 

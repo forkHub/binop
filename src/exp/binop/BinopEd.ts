@@ -7,7 +7,7 @@ class BinopEd extends ha.comp.BaseComponent {
 	constructor(binop: IBinop) {
 		super();
 		this._template = `
-			<div class='binop padding'>
+			<div class='binop padding-4'>
 				<div class='disp-table'>
 
 					<div class='exp1-cont disp-cell padding-kanan'>

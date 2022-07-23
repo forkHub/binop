@@ -6,11 +6,11 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
     constructor(f: IPanggilFungsi) {
         super();
         this._template = `
-            <div class='panggil-fungsi wspace-no-wrap padding user-select-none cursor-pointer'>
-                <div class='nama disp-inline-block'></div>
-                <div class='disp-inline-block'>(</div>
-                <div class='arg wspace-nowrap disp-inline-block'></div>
-                <div class='disp-inline-block'>)</div>
+            <div class='panggil-fungsi display-table wspace-no-wrap padding user-select-none cursor-pointer'>
+                <div class='nama disp-cell padding-kanan'></div>
+                <div class='disp-cell padding-kanan'>(</div>
+                <div class='arg wspace-nowrap disp-cell padding-kanan'></div>
+                <div class='disp-cell'>)</div>
             </div>
         `;
         this.build();

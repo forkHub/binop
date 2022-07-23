@@ -5,8 +5,8 @@ class ValueEd extends ha.comp.BaseComponent {
     constructor(value: IValue) {
         super();
         this._template = `
-            <div class='value padding-4 bevel-2 disp-inline-block user-select-none cursor-pointer'>
-                <div class='value cont back-white padding-4'>
+            <div class='value padding-4 disp-inline-block user-select-none cursor-pointer'>
+                <div class='value cont padding-4'>
 
                 </div>
             </div>
