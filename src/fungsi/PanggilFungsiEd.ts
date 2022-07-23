@@ -1,7 +1,7 @@
 ///<reference path="../ha/comp/BaseComponent.ts"/>
 
 class PanggilFungsiEd extends ha.comp.BaseComponent {
-    private panggilFungsiObj: IPanggilFungsi;
+    private panggilFungsi: IPanggilFungsi;
 
     constructor(f: IPanggilFungsi) {
         super();
@@ -14,7 +14,7 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
             </div>
         `;
         this.build();
-        this.panggilFungsiObj = f;
+        this.panggilFungsi = f;
         this.display();
         this.setEvent();
     }
@@ -24,7 +24,7 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
             e.stopPropagation();
 
             pilihFungsi.finish = () => {
-                PanggilFungsi.ganti(this.panggilFungsiObj, pilihFungsi.idDipilih);
+                PanggilFungsi.ganti(this.panggilFungsi, pilihFungsi.idDipilih);
                 this.display();
             }
 
@@ -42,20 +42,20 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
     }
 
     display(): void {
-        this.namaEl.innerText = PanggilFungsi.nama(this.panggilFungsiObj);
+        this.namaEl.innerText = PanggilFungsi.nama(this.panggilFungsi);
 
         //param
         this.argCont.innerHTML = '';
 
-        this.panggilFungsiObj.param.forEach((itemId: number, idx: number) => {
-            let expEd: ExpEd;
-            let expObj: IExp;
+        this.panggilFungsi.param.forEach((itemId: number, idx: number) => {
+            let expEd: ExpEd2;
+            let exp: IExp;
 
-            expObj = Exp.get(itemId)
-            expEd = new ExpEd(expObj);
+            exp = Exp.get(itemId)
+            expEd = new ExpEd2(exp);
             expEd.attach(this.argCont);
 
-            if (idx < this.panggilFungsiObj.param.length - 1) {
+            if (idx < this.panggilFungsi.param.length - 1) {
                 this.argCont.appendChild(this.buatComa());
             }
         })

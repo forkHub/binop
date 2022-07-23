@@ -19,7 +19,7 @@ interface IVarIsi extends IStmt {
 
 interface IExp extends IData {
 	refId: number,
-	typeExp: string;
+	typeExp: string; //TODO: dihapus, type bisa di infer dari id
 }
 
 interface IBinop extends IData {

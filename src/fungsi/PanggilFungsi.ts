@@ -25,33 +25,21 @@ class PanggilFungsi {
     }
 
     private static buildRef(f: IPanggilFungsi): void {
-        let fg: IDekFungsi
+        let dekFung: IDekFungsi
 
-        // console.group('build ref:');
-
-        fg = DekFungsi.get(f.refId);
+        dekFung = DekFungsi.get(f.refId);
 
         f.param = [];
-        fg.paramAr.forEach((item: IParam) => {
-            // let valueObj: IValue;
-            let expObj: IExp;
+        dekFung.paramAr.forEach((item: IParam) => {
+            let exp: IExp;
 
             item;
 
-            // valueObj = value.buat(0);
-            expObj = Exp.buatValue(0);
-            f.param.push(expObj.id);
+            exp = Exp.buatDef(0);
+            f.param.push(exp.id);
 
-            //validasi
-            Exp.get(expObj.id);
+            Exp.get(exp.id);
         });
-
-        // console.log('param:');
-        // console.log(f.param);
-
-        // console.log('id: ' + f.id);
-
-        // console.groupEnd();
     }
 
     static get(id: number): IPanggilFungsi {
@@ -96,14 +84,11 @@ class PanggilFungsi {
             type: TY_STMT,
         }
 
-        //build reference
         this.buildRef(hasil);
-
         dataObj.push(hasil);
 
         //validasi
         PanggilFungsi.get(hasil.id);
-
         hasil.param.forEach((item: number) => {
             Exp.getNamaById(item);
         })

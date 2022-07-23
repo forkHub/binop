@@ -11,7 +11,7 @@ class Exp {
 			nama: '',
 			type: TY_EXP,
 			refId: 0,
-			typeExp: EXP_VALUE
+			typeExp: ''
 		}
 
 		this.daftar.push(hasil);
@@ -196,6 +196,9 @@ class Exp {
 
 			fungObj = this.getFung(expObj);
 			hasil = PanggilFungsi.nama(fungObj);
+		}
+		else if (expObj.typeExp == '') {
+			//TODO: dihapus
 		}
 		else {
 			console.log("error, exp:");

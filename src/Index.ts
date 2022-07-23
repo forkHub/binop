@@ -16,11 +16,11 @@ function init(): void {
 }
 
 window.onload = () => {
-	testVariIsi();
+	// testVariIsi();
 	// testVarIsiBinop();
 	// testVarIsiFungsi();
 
-	// testPanggilFungsi();
+	testPanggilFungsi();
 	// testExpEd();
 	// testExpEd2();
 	// testExpForm();
