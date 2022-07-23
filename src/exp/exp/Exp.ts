@@ -88,7 +88,7 @@ class Exp {
 		let hasil: IExp;
 		let panggilFungsiObj: IPanggilFungsi;
 
-		panggilFungsiObj = panggilFungsi.buat(0, fung);
+		panggilFungsiObj = PanggilFungsi.buat(0, fung);
 		hasil = this.buat(indukId);
 
 		hasil.refId = panggilFungsiObj.id;
@@ -140,7 +140,7 @@ class Exp {
 			throw Error('invalid exp');
 		}
 
-		hasil = panggilFungsi.get(expObj.refId);
+		hasil = PanggilFungsi.get(expObj.refId);
 
 		if (!hasil) {
 			console.error('fung tidak ketemu, exp id: ' + expObj.id);
@@ -195,7 +195,7 @@ class Exp {
 			let fungObj: IPanggilFungsi;
 
 			fungObj = this.getFung(expObj);
-			hasil = panggilFungsi.nama(fungObj);
+			hasil = PanggilFungsi.nama(fungObj);
 		}
 		else {
 			console.log("error, exp:");

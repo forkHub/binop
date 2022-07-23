@@ -24,7 +24,7 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
             e.stopPropagation();
 
             pilihFungsi.finish = () => {
-                panggilFungsi.ganti(this.panggilFungsiObj, pilihFungsi.idDipilih);
+                PanggilFungsi.ganti(this.panggilFungsiObj, pilihFungsi.idDipilih);
                 this.display();
             }
 
@@ -42,7 +42,7 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
     }
 
     display(): void {
-        this.namaEl.innerText = panggilFungsi.nama(this.panggilFungsiObj);
+        this.namaEl.innerText = PanggilFungsi.nama(this.panggilFungsiObj);
 
         //param
         this.argCont.innerHTML = '';

@@ -1,10 +1,10 @@
 class PanggilFungsi {
 
-    nama(f: IPanggilFungsi): string {
+    static nama(f: IPanggilFungsi): string {
         return DekFungsi.get(f.refId).nama;
     }
 
-    paramNama(f: IPanggilFungsi, idx: number): string {
+    static paramNama(f: IPanggilFungsi, idx: number): string {
         let hasil: string;
 
         f.param.forEach((itemId: number, paramIdx: number) => {
@@ -19,12 +19,12 @@ class PanggilFungsi {
         return hasil;
     }
 
-    ganti(f: IPanggilFungsi, refId: number): void {
+    static ganti(f: IPanggilFungsi, refId: number): void {
         f.refId = refId;
         this.buildRef(f)
     }
 
-    private buildRef(f: IPanggilFungsi): void {
+    private static buildRef(f: IPanggilFungsi): void {
         let fg: IDekFungsi
 
         // console.group('build ref:');
@@ -54,7 +54,7 @@ class PanggilFungsi {
         // console.groupEnd();
     }
 
-    get(id: number): IPanggilFungsi {
+    static get(id: number): IPanggilFungsi {
         let hasil: IPanggilFungsi;
 
         hasil = dataObj.getById(id) as IPanggilFungsi;
@@ -82,7 +82,7 @@ class PanggilFungsi {
         return hasil;
     }
 
-    buat(indukId: number, fung: IDekFungsi): IPanggilFungsi {
+    static buat(indukId: number, fung: IDekFungsi): IPanggilFungsi {
         let hasil: IPanggilFungsi;
 
         hasil = {
@@ -102,7 +102,7 @@ class PanggilFungsi {
         dataObj.push(hasil);
 
         //validasi
-        panggilFungsi.get(hasil.id);
+        PanggilFungsi.get(hasil.id);
 
         hasil.param.forEach((item: number) => {
             Exp.getNamaById(item);
@@ -112,4 +112,4 @@ class PanggilFungsi {
     }
 }
 
-const panggilFungsi: PanggilFungsi = new PanggilFungsi();
+// const panggilFungsi: PanggilFungsi = new PanggilFungsi();
