@@ -1,5 +1,4 @@
 class Binop {
-	private static readonly daftar: IBinop[] = [];	//TODO: di merge ke dataobj
 
 	static buatDef(indukId: number): IBinop {
 
@@ -8,26 +7,21 @@ class Binop {
 			indukId: indukId,
 			ket: '',
 			nama: '',
-			type: TY_STMT,
+			type: TY_BINOP,
 			exp1Id: Exp.buatDef(0).id,
 			exp2Id: Exp.buatDef(0).id,
 			opr: '*'
 		}
 
 		//TODO: validate
-		this.daftar.push(obj);
+
+		dataObj.push(obj);
+
 		return obj;
 	}
 
 	static hapus(id: number): void {
-		for (let i: number = 0; i < this.daftar.length; i++) {
-			if (this.daftar[i].id == id) {
-				this.daftar.splice(i, 1);
-				return;
-			}
-		}
-
-		throw Error('hapus binop tidak ketemu, id ' + id);
+		dataObj.hapusId(id);
 	}
 
 	static baru(indukId: number): IBinop {
@@ -47,14 +41,15 @@ class Binop {
 	static cariId(id: number): IBinop {
 		let hasil: IBinop;
 
-		this.daftar.forEach((item: IBinop) => {
-			if (item.id == id) {
-				hasil = item;
-			}
-		})
+		hasil = dataObj.getById(id) as IBinop;
+
+		if (hasil.type != TY_BINOP) {
+			console.error(hasil);
+			throw Error('invalid');
+		}
 
 		if (!hasil) {
-			console.error('binop gak ketemu: ' + id);
+			throw Error('binop gak ketemu: ' + id);
 		}
 
 		return hasil;
