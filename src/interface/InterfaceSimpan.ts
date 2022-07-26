@@ -1,7 +1,7 @@
 interface ISimpan {
 	modul: IModul[],
 	var: IVar[],
-	dekFung: IDekFungsi[]
+	// dekFung: IDekFungsi[] //TODO: dihapus
 	param: IParam[],
 	value: IValue[],
 	stmt: IStmt[],

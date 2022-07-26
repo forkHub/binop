@@ -28,7 +28,8 @@ class PanggilFungsiEd extends ha.comp.BaseComponent {
                 this.display();
             }
 
-            pilihFungsi.tampil(DekFungsi.daftar);
+            //TODO: get daftar dek fungsi
+            // pilihFungsi.tampil(DekFungsi.daftar);
         }
     }
 

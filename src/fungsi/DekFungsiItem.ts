@@ -51,15 +51,17 @@ class DekFungsiItemView extends ha.comp.BaseComponent {
         this.menu.buatTombol({
             label: 'hapus',
             f: () => {
-                for (let i: number = 0; i < DekFungsi.daftar.length; i++) {
-                    if (DekFungsi.daftar[i].id == this._item.id) {
-                        DekFungsi.daftar.splice(i, 1);
-                        break;
-                    }
-                }
+                //TODO: hapus
+                // DekFungsi.h
+                // for (let i: number = 0; i < DekFungsi.daftar.length; i++) {
+                //     if (DekFungsi.get(i).id == this._item.id) {
+                //         DekFungsi.daftar.splice(i, 1);
+                //         break;
+                //     }
+                // }
 
-                this.destroy();
-                dataObj.simpan();
+                // this.destroy();
+                // dataObj.simpan();
             }
         })
 

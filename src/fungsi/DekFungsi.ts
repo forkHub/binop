@@ -1,5 +1,5 @@
 class DekFungsi {
-    static readonly daftar: IDekFungsi[] = [];
+    // static readonly daftar: IDekFungsi[] = [];
 
     static buatParam(nama: string, indukId: number, param: IParam[]): IDekFungsi {
         let hasil: IDekFungsi;
@@ -27,7 +27,8 @@ class DekFungsi {
             ket: ''
         }
 
-        this.daftar.push(hasil);
+        // this.daftar.push(hasil);
+        dataObj.push(hasil);
         dataObj.simpan();
 
         this.validasi(hasil);
@@ -36,17 +37,19 @@ class DekFungsi {
     }
 
     static get(id: number): IDekFungsi {
-        for (let i: number = 0; i < this.daftar.length; i++) {
-            let item: IDekFungsi = this.daftar[i];
-            if (item.id == id) {
-                if (item.type != TY_DEK_FUNGSI) {
-                    throw Error('invalid dek fungsi');
-                }
-                return item;
-            }
+        let hasil: IDekFungsi;
+
+        hasil = dataObj.getById(id) as IDekFungsi;
+
+        //TODO: validate type
+        if (hasil.type != TY_DEK_FUNGSI) {
+            console.log(hasil);
+            throw Error('invalid type');
         }
 
-        throw Error('');
+
+        return hasil;
+
     }
 
     static terj(item: IDekFungsi): string {

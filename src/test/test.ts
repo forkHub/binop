@@ -95,7 +95,8 @@ function testPilihFungsi(): void {
 	buatContohFungsi();
 
 	pilihFungsi.finish = () => { }
-	pilihFungsi.tampil(DekFungsi.daftar);
+	//TODO: daftar dek fungsi
+	// pilihFungsi.tampil(DekFungsi.daftar);
 }
 
 function testFor(): void {

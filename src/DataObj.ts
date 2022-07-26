@@ -82,7 +82,7 @@ class DataObj {
 
 		simpan = {
 			var: Variable.daftar,
-			dekFung: DekFungsi.daftar,
+			// dekFung: DekFungsi.daftar,
 			modul: Modul.daftar,
 			param: this.paramAr,
 			stmt: Stmt.daftar,
