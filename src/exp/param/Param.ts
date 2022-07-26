@@ -1,5 +1,5 @@
 class Param {
-    readonly daftar: IParam[] = [];
+    // readonly daftar: IParam[] = [];
 
     buat(indukId: number, nama: string): IParam {
         let hasil: IParam;
@@ -11,6 +11,8 @@ class Param {
             nama: nama,
             type: TY_PARAM
         }
+
+        dataObj.push(hasil);
 
         return hasil;
     }
