@@ -1,5 +1,5 @@
 class Exp {
-	private static readonly daftar: IExp[] = [];
+	// private static readonly daftar: IExp[] = [];
 
 	static buatDef(indukId: number): IExp {
 		let hasil: IExp;
@@ -14,7 +14,8 @@ class Exp {
 			typeExp: ''
 		}
 
-		this.daftar.push(hasil);
+		// this.daftar.push(hasil);
+		dataObj.push(hasil);
 
 		return hasil;
 	}
@@ -43,6 +44,7 @@ class Exp {
 	// 	return this.buatValue(indukid, valueObj);
 	// }
 
+	//TODO: dihapus
 	static buatValue(indukId: number): IExp {
 		let hasil: IExp;
 		let valueObj: IValue;
@@ -54,7 +56,8 @@ class Exp {
 
 		hasil.typeExp = EXP_VALUE;
 
-		this.daftar.push(hasil);
+		// this.daftar.push(hasil);
+		dataObj.push(hasil);
 
 		this.validate(hasil);
 
@@ -94,7 +97,8 @@ class Exp {
 		hasil.refId = panggilFungsiObj.id;
 		hasil.typeExp = EXP_REF_FUNGSI;
 
-		this.daftar.push(hasil);
+		// this.daftar.push(hasil);
+		dataObj.push(hasil);
 
 		this.validate(hasil);
 
@@ -115,11 +119,13 @@ class Exp {
 	static get(id: number): IExp {
 		let hasil: IExp;
 
-		this.daftar.forEach((item: IExp) => {
-			if (item.id == id) {
-				hasil = item;
-			}
-		})
+		hasil = dataObj.getById(id) as IExp;
+
+		// this.daftar.forEach((item: IExp) => {
+		// 	if (item.id == id) {
+		// 		hasil = item;
+		// 	}
+		// })
 
 		if (!hasil) {
 			throw Error('exp tidak ketemu, id: ' + id);
