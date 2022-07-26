@@ -8,19 +8,22 @@ class VarIsiEd extends ha.comp.BaseComponent {
 	constructor(item: IVarIsi, del: boolean) {
 		super();
 		this._template = `
-			<div class='var-isi disp-table padding bevel-2'>
+			<div class='var-isi disp-table'>
 
-					<div class='disp-cell var-isi menu-cont'>
+					<div class='disp-cell var-isi menu-cont padding-kanan'>
 						<button class='menu'>|||</button>
 					</div>
 
 					<div class='disp-cell'>
 						<div class='disp-table'>
-							<div class='var-isi var-cont disp-cell padding-kanan'>
-								
+							<div class='disp-cell padding-kanan'>
+								<div class='var-isi var-cont border'>
+								</div>
 							</div>
-							<div class='sama-dengan disp-cell padding-kanan'>=
+
+							<div class='sama-dengan disp-cell padding-kanan user-select-none'>=
 							</div>
+
 							<div class='var-isi exp-cont disp-cell'>
 							</div>
 						</div>

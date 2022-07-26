@@ -246,6 +246,10 @@ a.bersih {
 	align-items: center
 }
 
+.v-align-top {
+	vertical-align: top;
+}
+
 .tengah-tengah {
 	display: flex;
 	justify-content: center;

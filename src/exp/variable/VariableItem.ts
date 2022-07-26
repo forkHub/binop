@@ -5,19 +5,14 @@ class VariableItem extends ha.comp.BaseComponent {
 	constructor(item: IVar) {
 		super();
 		this._template = `
-            <div class='comp var-item padding-4'>
-				<div class='border padding disp-flex'>
-					<div class='menu'>
-						<button>|||</button>
-					</div>
-					<div class='nama'></div>
-				</div>
-            </div>
+			<div class='var-item border padding disp-table'>
+				<div class='nama disp-cell'></div>
+			</div>
         `;
 		this.build();
 
 		this._item = item;
-		this.namaDiv.innerText = 'var: ' + item.nama;
+		this.namaDiv.innerText = 'let ' + item.nama;
 
 		this.menu = new ha.comp.MenuPopup();
 		this.menu.buatTombol({
@@ -46,7 +41,7 @@ class VariableItem extends ha.comp.BaseComponent {
 		})
 
 
-		this.menuTbl.onclick = (e: MouseEvent) => {
+		this._elHtml.onclick = (e: MouseEvent) => {
 			e.stopPropagation();
 			this.menu.view.attach(document.body);
 		}
@@ -64,9 +59,5 @@ class VariableItem extends ha.comp.BaseComponent {
 
 	private get namaDiv(): HTMLDivElement {
 		return this.getEl('div.nama') as HTMLDivElement;
-	}
-
-	private get menuTbl(): HTMLButtonElement {
-		return this.getEl('div.menu button') as HTMLButtonElement;
 	}
 }

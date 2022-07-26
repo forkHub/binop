@@ -7,10 +7,8 @@ class VarRefEd extends ha.comp.BaseComponent {
         super();
 
         this._template = `
-            <div class='var-ref disp-inline-block user-select-none cursor-pointer'>
-                <div class='padding bevel-2'>
-                    <div class='var-ref cont back-white'></div>
-                </div>
+            <div class='var-ref disp-table user-select-none cursor-pointer' style='min-width:39px'>
+                <div class='var-ref disp-cell cont back-white padding'></div>
             </div>
         `;
 
@@ -20,6 +18,7 @@ class VarRefEd extends ha.comp.BaseComponent {
         this.varRef = varRef;
         this.display();
         this.varCont.style.backgroundColor = 'white';
+        this._elHtml.style.minHeight = '36px';
 
         this._elHtml.onclick = (e: MouseEvent) => {
             e.stopPropagation();

@@ -5,9 +5,8 @@ class ValueEd extends ha.comp.BaseComponent {
     constructor(value: IValue) {
         super();
         this._template = `
-            <div class='value padding-4 disp-inline-block user-select-none cursor-pointer'>
-                <div class='value cont padding-4'>
-
+            <div class='value user-select-none cursor-pointer back-white disp-table'>
+                <div class='disp-cell value cont padding'>
                 </div>
             </div>
         `;
@@ -15,6 +14,13 @@ class ValueEd extends ha.comp.BaseComponent {
         this.value = value;
         this.cont.innerText = value.value;
         this.setupMenu();
+
+        this._elHtml.style.width = '100%';
+        this._elHtml.style.height = '100%';
+        this._elHtml.style.minHeight = '36px';
+        this._elHtml.style.borderColor = 'white';
+        this._elHtml.style.verticalAlign = 'middle';
+        // this._elHtml.style.borderStyle = 'solid';
 
         this._elHtml.onclick = (e: MouseEvent) => {
             e.stopPropagation();

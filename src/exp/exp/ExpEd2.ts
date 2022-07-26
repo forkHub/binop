@@ -13,6 +13,8 @@ class ExpEd2 extends ha.comp.BaseComponent {
         `;
         this.build();
         this.exp = exp;
+        // this._elHtml.style.width = '36px';
+        // this._elHtml.style.height = '36px';
         this._elHtml.style.minWidth = '36px';
         this._elHtml.style.minHeight = '36px';
 

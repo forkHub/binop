@@ -1,5 +1,5 @@
 class Stmt {
-    static readonly daftar: IStmt[] = [];
+    static readonly daftar: IStmt[] = []; //TODO: migrate ke data obj
 
     static get(id: number): IStmt {
 

@@ -113,6 +113,8 @@ class VarIsi {
 		hasil.expId = Exp.buatDef(hasil.id).id;
 		hasil.varRefId = VarRef.buat(hasil.id).id;
 
+		Stmt.daftar.push(hasil);
+
 		return hasil;
 	}
 

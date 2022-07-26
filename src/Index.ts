@@ -20,7 +20,7 @@ window.onload = () => {
 	// testVarIsiBinop();
 	// testVarIsiFungsi();
 
-	testPanggilFungsi();
+	// testPanggilFungsi();
 	// testExpEd();
 	// testExpEd2();
 	// testExpForm();
@@ -28,5 +28,5 @@ window.onload = () => {
 	// testPilihFungsi();
 
 	// testObj();
-	// testFor();
+	testFor();
 }

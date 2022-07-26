@@ -101,11 +101,7 @@ function testPilihFungsi(): void {
 function testFor(): void {
 	let ed: ForNextEd;
 	let forObj: IFor;
-	// let varIsi: IVarIsi;
-	// let exp: IExp;
 
-	// exp = Exp.buatValue(0);
-	// varIsi = VarIsi.buatExp(0, Exp.buatValue(0));
 	forObj = ForNext.buat(0);
 
 	ed = new ForNextEd(forObj);
