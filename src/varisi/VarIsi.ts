@@ -99,7 +99,7 @@ class VarIsi {
 		let valueObj: IValue;
 
 		valueObj = Value.buat(0);
-		expObj = Exp.buatValue(indukId);
+		expObj = Exp.buatDef(indukId);
 		Value.setIndukId(valueObj, expObj.id);
 
 		// return 
@@ -142,7 +142,7 @@ class VarIsi {
 		let binopObj: IBinop;
 
 		hasil = this.buatDasar(indukId);
-		binopObj = Binop.baru(hasil.id)
+		binopObj = Binop.buatDef(hasil.id)
 		hasil.expId = binopObj.id;
 
 		this.simpanObj(hasil);

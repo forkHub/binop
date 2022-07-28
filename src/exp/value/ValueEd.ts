@@ -27,6 +27,7 @@ class ValueEd extends ha.comp.BaseComponent {
 
             this.menu.view.attach(document.body);
         }
+
     }
 
     get cont(): HTMLElement {

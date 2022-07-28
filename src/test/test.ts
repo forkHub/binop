@@ -21,7 +21,7 @@ function testExpForm(): void {
 	buatContohVar();
 
 	// valueObj = value.buat(0)
-	expObj = Exp.buatValue(0);
+	expObj = Exp.buatDef(0);
 	expForm = new ExpForm(expObj, () => { });
 
 	expForm.attach(document.body);
@@ -37,7 +37,7 @@ function testExpEd(): void {
 	buatContohVar();
 
 	// valueObj = value.buat(0);
-	expObj = Exp.buatValue(0);
+	expObj = Exp.buatDef(0);
 	expEd = new ExpEd(expObj);
 
 	expEd.attach(document.body);
@@ -64,7 +64,7 @@ function testBinop(): void {
 
 	buatContohVar();
 
-	binopObj = Binop.baru(0);
+	binopObj = Binop.buatDef(0);
 
 	binopEd = new BinopEd(binopObj);
 	binopEd.attach(document.body);

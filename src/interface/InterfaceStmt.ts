@@ -14,6 +14,11 @@ interface IDekFungsi extends IData {
 	stmtAr: number[],
 }
 
+interface IIf extends IData {
+	expId: number,
+	stmtAr: number[],
+}
+
 interface IParam extends IData {
 
 }

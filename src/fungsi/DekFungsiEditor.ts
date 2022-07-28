@@ -118,7 +118,7 @@ class DekFungsiEditor extends ha.comp.BaseComponent {
 				let expObj: IExp;
 
 				// valueObj = value.buat(0);
-				expObj = Exp.buatValue(0);
+				expObj = Exp.buatDef(0);
 				obj = VarIsi.buatValue(this._item.id, expObj);
 
 				// expObj = exp.get(obj.refId)

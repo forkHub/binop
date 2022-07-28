@@ -37,13 +37,6 @@ class Exp {
 		return hasil;
 	}
 
-	// buatValue3(indukid: number): IExp {
-	// 	let valueObj: IValue;
-
-	// 	valueObj = value.buat(0);
-	// 	return this.buatValue(indukid, valueObj);
-	// }
-
 	//TODO: dihapus
 	static buatValue(indukId: number): IExp {
 		let hasil: IExp;
@@ -63,23 +56,6 @@ class Exp {
 
 		return hasil;
 	}
-
-	// private static buatValue2(indukId: number, refId: number): IExp {
-	// 	let hasil: IExp;
-
-	// 	//validate
-	// 	value.get(refId);
-
-	// 	hasil = this.buat(indukId);
-	// 	hasil.refId = refId;
-	// 	hasil.typeExp = EXP_VALUE;
-
-	// 	this.daftar.push(hasil);
-
-	// 	this.validate(hasil);
-
-	// 	return hasil;
-	// }
 
 	//TODO: dihapus
 	static buatFungsiObj(indukid: number, dekFungsi: IDekFungsi): IExp {

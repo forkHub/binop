@@ -24,21 +24,21 @@ class Binop {
 		dataObj.hapusId(id);
 	}
 
-	static baru(indukId: number): IBinop {
-		let hasil: IBinop;
+	// static baru(indukId: number): IBinop {
+	// 	let hasil: IBinop;
 
-		hasil = this.buatDef(indukId);
-		this.setExp(hasil, Exp.buatValue(hasil.id).id, Exp.buatValue(hasil.id).id);
+	// 	hasil = this.buatDef(indukId);
+	// 	this.setExp(hasil, Exp.buatValue(hasil.id).id, Exp.buatValue(hasil.id).id);
 
-		return hasil;
-	}
+	// 	return hasil;
+	// }
 
-	private static setExp(binop: IBinop, id: number, id2: number): void {
-		binop.exp1Id = id;
-		binop.exp2Id = id2;
-	}
+	// private static setExp(binop: IBinop, id: number, id2: number): void {
+	// 	binop.exp1Id = id;
+	// 	binop.exp2Id = id2;
+	// }
 
-	static cariId(id: number): IBinop {
+	static get(id: number): IBinop {
 		let hasil: IBinop;
 
 		hasil = dataObj.getById(id) as IBinop;

@@ -45,10 +45,8 @@ class VarRefEd extends ha.comp.BaseComponent {
                 dlgPilihVariable.view.attach(document.body);
                 dlgPilihVariable.tampil();
                 dlgPilihVariable.finish = () => {
-                    // this._elHtml.innerText = Variable.nama(dlgPilihVariable.varId);
                     this.varRef.refId = dlgPilihVariable.varId;
                     this.display();
-                    // this.ganti();
                 }
             }
         })
@@ -60,7 +58,6 @@ class VarRefEd extends ha.comp.BaseComponent {
 
     display(): void {
         console.log('display');
-        // console.log(this._varId);
 
         if (this.varRef.refId > 0) {
             this.varCont.innerText = Variable.get(this.varRef.refId).nama;

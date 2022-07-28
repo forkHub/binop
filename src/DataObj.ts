@@ -86,6 +86,14 @@ class DataObj {
 		return hasil;
 	}
 
+	getType(id: number): string {
+		let hasil: IData;
+
+		hasil = this.getById(id);
+
+		return hasil.type;
+	}
+
 	hapusSemua(): void {
 		window.localStorage.clear();
 	}
