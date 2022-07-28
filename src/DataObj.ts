@@ -56,6 +56,36 @@ class DataObj {
 		return hasil;
 	}
 
+	getByIndukId(id: number): IData {
+		let hasil: IData;
+
+		this.dataAr.forEach((item: IData) => {
+			if (item.indukId == id) {
+				hasil = item;
+			}
+		})
+
+		if (!hasil) {
+			throw Error('get by induk id, not found: ' + id);
+		}
+		else {
+			return hasil;
+		}
+
+	}
+
+	getByType(ty: string): IData[] {
+		let hasil: IData[] = [];
+
+		this.dataAr.forEach((item: IData) => {
+			if (item.type == ty) {
+				hasil.push(item);
+			}
+		})
+
+		return hasil;
+	}
+
 	hapusSemua(): void {
 		window.localStorage.clear();
 	}
@@ -116,9 +146,9 @@ class DataObj {
 
 
 
-				while (DekFungsi.daftar.length > 0) {
-					DekFungsi.daftar.pop();
-				}
+				// while (DekFungsi.daftar.length > 0) {
+				// 	DekFungsi.daftar.pop();
+				// }
 
 				while (this.paramAr.length > 0) {
 					this.paramAr.pop();
@@ -142,18 +172,18 @@ class DataObj {
 
 				Modul.muat(muatObj);
 
-				muatObj.dekFung.forEach((item: IDekFungsi) => {
-					DekFungsi.daftar.push({
-						id: item.id,
-						indukId: item.indukId,
-						nama: item.nama,
-						type: item.type,
-						stmtAr: item.stmtAr,
-						varAr: item.varAr,
-						ket: item.ket,
-						paramAr: item.paramAr
-					})
-				})
+				// muatObj.dekFung.forEach((item: IDekFungsi) => {
+				// 	DekFungsi.daftar.push({
+				// 		id: item.id,
+				// 		indukId: item.indukId,
+				// 		nama: item.nama,
+				// 		type: item.type,
+				// 		stmtAr: item.stmtAr,
+				// 		varAr: item.varAr,
+				// 		ket: item.ket,
+				// 		paramAr: item.paramAr
+				// 	})
+				// })
 
 				muatObj.param.forEach((item: IParam) => {
 					this.paramAr.push({

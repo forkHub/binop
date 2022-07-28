@@ -106,4 +106,21 @@ class DekFungsi {
         this.get(item.id);
     }
 
+    static daftar(): IDekFungsi[] {
+        let hasil: IDekFungsi[] = [];
+
+        hasil = dataObj.getByType(TY_DEK_FUNGSI) as IDekFungsi[];
+
+        //validate
+        hasil.forEach((item: IDekFungsi) => {
+            if (item.type != TY_DEK_FUNGSI) {
+                console.log(item);
+                throw Error('hasil invalid');
+                // console.error('item')
+            }
+        })
+
+        return hasil;
+    }
+
 }

@@ -1,4 +1,3 @@
-//TODO: dibuat lebih generik fungsinya
 ///<reference path="../ha/comp/BaseComponent.ts"/>
 
 class PilihFungsiView extends ha.comp.BaseComponent {

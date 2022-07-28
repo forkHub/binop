@@ -95,8 +95,7 @@ function testPilihFungsi(): void {
 	buatContohFungsi();
 
 	pilihFungsi.finish = () => { }
-	//TODO: daftar dek fungsi
-	// pilihFungsi.tampil(DekFungsi.daftar);
+	pilihFungsi.tampil(DekFungsi.daftar());
 }
 
 function testFor(): void {
@@ -170,13 +169,3 @@ function testObj(): void {
 	console.log(obj);
 	console.log(JSON.stringify(obj));
 }
-
-
-
-
-//test var isi panggil fungsi
-
-//test for
-//test if
-//test else if
-//test else

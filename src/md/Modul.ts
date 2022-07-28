@@ -1,8 +1,11 @@
 class Modul {
-    private static readonly _daftar: IModul[] = [];
 
     static get daftar(): IModul[] {
-        return this._daftar.slice();
+        let hasil: IModul[];
+
+        hasil = dataObj.getByType(TY_MODUL) as IModul[];
+
+        return hasil;
     }
 
     static buatModulObj(nama: string, indukId: number): IModul {
@@ -19,27 +22,36 @@ class Modul {
             ket: ''
         }
 
-        this._daftar.push(modul);
+        dataObj.push(modul);
         dataObj.simpan();
         return modul;
     }
 
     static getModul(id: number): IModul {
-        for (let i: number = 0; i < this._daftar.length; i++) {
-            let item: IModul = this._daftar[i];
-            if (item.id == id) return item;
+        let hasil: IModul;
+
+        hasil = dataObj.getById(id) as IModul;
+
+        if (hasil.type != TY_MODUL) {
+            console.log(hasil);
+            throw Error('invalid modul, id: ' + id);
         }
 
-        throw Error('id ' + id);
+        return hasil;
+
     }
 
     static getAwal(): IModul {
-        for (let i: number = 0; i < this._daftar.length; i++) {
-            let item: IModul = this._daftar[i];
-            if (item.indukId == 0) return item;
+        let hasil: IModul;
+
+        hasil = dataObj.getByIndukId(0) as IModul;
+
+        if (hasil.type != TY_MODUL) {
+            console.log(hasil);
+            throw Error('get awal bukan modul');
         }
 
-        return null;
+        return hasil;
     }
 
     static terj(modul: IModul): string {
@@ -68,33 +80,11 @@ class Modul {
     }
 
     static hapus(id: number): void {
-        for (let i: number = 0; i < Modul._daftar.length; i++) {
-            if (Modul._daftar[i].id == id) {
-                Modul._daftar.splice(i, 1);
-                dataObj.simpan();
-                break;
-            }
-        }
-
-        throw Error('id: ' + id);
+        dataObj.hapusId(id);
     }
 
     static muat(muatObj: ISimpan): void {
-        while (Modul._daftar.length > 0) {
-            Modul._daftar.pop();
-        }
-
-        muatObj.modul.forEach((item: IModul) => {
-            Modul._daftar.push({
-                id: item.id,
-                indukId: item.indukId,
-                nama: item.nama,
-                type: item.type,
-                fungAr: item.fungAr,
-                modulAr: item.modulAr,
-                varAr: item.varAr,
-                ket: item.ket
-            })
-        })
+        muatObj;
+        //TODO: belum selesai
     }
 }

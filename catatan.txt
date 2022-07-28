@@ -1,4 +1,15 @@
+next:
+=====
+if
+
+
+refaktor:
+=========
+simpan diganti
+daftar digabung ke dataobj
+dataobj dibuat static
 setter getter pada handler
+variable private dibuat _
 
 fase 2:
 =======
